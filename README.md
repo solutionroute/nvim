@@ -14,12 +14,12 @@ A simple, hopefully understandable, Neovim configuration in Lua.
 
 ## Installation
 
-  # in your ~/.config consider keeping your existing
-  cd ~/.config
-  mv nvim nvim-your-backup
-  git clone https://github.com/solutionroute/nvim.git nvim-solutionroute
-  ln -sv nvim-solutionroute nvim
-  nvim +PackerClean +PackerSync
+    # in your ~/.config consider keeping your existing
+    cd ~/.config
+    mv nvim nvim-your-backup
+    git clone https://github.com/solutionroute/nvim.git nvim-solutionroute
+    ln -sv nvim-solutionroute nvim
+    nvim +PackerClean +PackerSync
 
 # Customization
 
