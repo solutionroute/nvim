@@ -23,7 +23,7 @@ A simple, hopefully understandable, Neovim configuration in Lua.
 
 ## Use 
 
-The <Leader> key is space. Whichkey menus guide the user (Dec 11 2022 still
+The `<Leader>` key is space. Whichkey menus guide the user (Dec 11 2022 still
 defining some core mappings).
 
 ## Customization
@@ -58,4 +58,3 @@ Keeping it simple is the plan. See core/config/init.lua in particular.
     │   │   └── plugins.lua
     │   └── user-example.lua
     └── README.md
-
