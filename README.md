@@ -21,14 +21,40 @@ A simple, hopefully understandable, Neovim configuration in Lua.
     ln -sv nvim-solutionroute nvim
     nvim +PackerClean +PackerSync
 
-# Customization
+## Use 
+
+The <Leader> key is space. Whichkey menus guide the user (Dec 11 2022 still
+defining some core mappings).
+
+## Customization
 
 If you want to override options or mappings while still tracking this repo,
 this can be done by copying `lua/user-example.lua` to `lua/user.lua`; place
 your customizations there.
 
-## Status
+## File Layout
 
-I've moved much of my old functionality over to this cleaner configuration but
-as of Dec 11 2022 still have some mappings/Whichkey setup to complete. 
+Keeping it simple is the plan.
+.
+├── init.lua
+├── LICENSE
+├── lua
+│   ├── core
+│   │   ├── config
+│   │   │   ├── cmp.lua
+│   │   │   ├── colorizer.lua
+│   │   │   ├── gitsigns.lua
+│   │   │   ├── indent-blankline.lua
+│   │   │   ├── init.lua
+│   │   │   ├── lsp.lua
+│   │   │   ├── lualine.lua
+│   │   │   ├── nvim-tree.lua
+│   │   │   ├── telescope.lua
+│   │   │   └── treesitter.lua
+│   │   ├── init.lua
+│   │   ├── mapping.lua
+│   │   ├── options.lua
+│   │   └── plugins.lua
+│   └── user-example.lua
+└── README.md
 
