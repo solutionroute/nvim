@@ -34,27 +34,28 @@ your customizations there.
 
 ## File Layout
 
-Keeping it simple is the plan.
-.
-├── init.lua
-├── LICENSE
-├── lua
-│   ├── core
-│   │   ├── config
-│   │   │   ├── cmp.lua
-│   │   │   ├── colorizer.lua
-│   │   │   ├── gitsigns.lua
-│   │   │   ├── indent-blankline.lua
-│   │   │   ├── init.lua
-│   │   │   ├── lsp.lua
-│   │   │   ├── lualine.lua
-│   │   │   ├── nvim-tree.lua
-│   │   │   ├── telescope.lua
-│   │   │   └── treesitter.lua
-│   │   ├── init.lua
-│   │   ├── mapping.lua
-│   │   ├── options.lua
-│   │   └── plugins.lua
-│   └── user-example.lua
-└── README.md
+Keeping it simple is the plan. See core/config/init.lua in particular.
+
+    .
+    ├── init.lua
+    ├── LICENSE
+    ├── lua
+    │   ├── core
+    │   │   ├── config
+    │   │   │   ├── cmp.lua
+    │   │   │   ├── colorizer.lua
+    │   │   │   ├── gitsigns.lua
+    │   │   │   ├── indent-blankline.lua
+    │   │   │   ├── init.lua
+    │   │   │   ├── lsp.lua
+    │   │   │   ├── lualine.lua
+    │   │   │   ├── nvim-tree.lua
+    │   │   │   ├── telescope.lua
+    │   │   │   └── treesitter.lua
+    │   │   ├── init.lua
+    │   │   ├── mapping.lua
+    │   │   ├── options.lua
+    │   │   └── plugins.lua
+    │   └── user-example.lua
+    └── README.md
 
