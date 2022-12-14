@@ -1,4 +1,4 @@
--- lua/core/mapping.lua
+-- nvim/lua/core/mapping.lua
 -- Modes: n - normal; i - insert; v - visual; x - block mode; c - command
 
 local map = vim.keymap.set
@@ -29,10 +29,14 @@ wk.register({
     g = { tb.live_grep, "grep files" },
     h = { tb.help_tags, "search help" },
     m = { tb.marks, "search marks" },
+    p = { tb.builtin, "search telescope pickers" },
+    q = { tb.quickfix, "search quickfix" },
     r = { tb.oldfiles, "search recent" },
   },
   l = {
     name = "language server",
+    d = { tb.lsp_definitions, "Go to Definition" }, -- also Ctrl-W]
+    b = { tb.lsp_document_symbols, "List symbols in buffer" },
     l = {"<cmd>LspInfo<cr>", "Lsp info" },
     m = {"<cmd>Mason<cr>", "Mason" },
   },
