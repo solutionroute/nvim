@@ -82,21 +82,21 @@ return packer.startup(function(use)
   -- git integration
   use {'lewis6991/gitsigns.nvim', require = 'folke/which-key.nvim'}
 
-  -- LSP provision and completion
+  -- LSP provision and completion; configured in config.lsp.lua
   use {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
     "jay-babu/mason-null-ls.nvim",
-      --auto complete
-  'hrsh7th/cmp-nvim-lsp',
+  }
+  --auto complete, required for LSP
+  use {'hrsh7th/cmp-nvim-lsp',
   'hrsh7th/cmp-buffer',
   'hrsh7th/cmp-path',
   'hrsh7th/cmp-cmdline',
   'hrsh7th/nvim-cmp',
   --
   'hrsh7th/cmp-vsnip',
-  'hrsh7th/vim-vsnip',
   -- configure or dump below
   -- "hrsh7th/cmp-nvim-lsp",
   -- "hrsh7th/cmp-buffer",
