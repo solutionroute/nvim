@@ -1,5 +1,6 @@
-
-require('core.plugins') -- should be first, as it initializes packer if not installed
-require('core.config') -- configuration for plugins that require more than a simple setup()
-require('core.options') -- neovim options
-require('core.mapping') -- key maps, mostly driven by Whichkey
+-- nvim/core/init.lua
+require('core.plugins') -- initializes packer if not installed
+require('core.config') -- configuration for plugins
+require('core.options') -- nvim options
+require('core.mapping') -- key maps and menus, mostly driven by which-key
+require('core.autocommands') -- autocommands with no better place to go
