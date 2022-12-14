@@ -1,5 +1,4 @@
 -- nvim/lua/core/config/init.lua
-
 -- for simple one-liners, if needed, include them here:
 require("bufferline").setup{}
 require('Comment').setup()

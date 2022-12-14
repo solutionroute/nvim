@@ -3,7 +3,7 @@
 
 local opt = vim.opt
 
-
+-- options list and comments borrowed from AstroNvim
 opt.backspace = vim.opt.backspace + { "nostop" } -- Don't stop backspace at insert
 opt.clipboard = "unnamedplus" -- Connection to the system clipboard
 opt.cmdheight = 1 -- (0 will hide command line unless needed)
@@ -21,7 +21,7 @@ opt.mouse = "a" -- Enable mouse support
 opt.number = true -- Show numberline
 opt.preserveindent = true -- Preserve indent structure as much as possible
 opt.pumheight = 10 -- Height of the pop up menu
-opt.relativenumber = true -- Show relative numberline
+opt.relativenumber = false -- Show relative numberline
 opt.scrolloff = 8 -- Number of lines to keep above and below the cursor
 opt.shiftwidth = 2 -- Number of space inserted for indentation
 opt.showmode = false -- Disable showing modes in command line
