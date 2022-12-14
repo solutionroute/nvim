@@ -15,10 +15,8 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
   -- configuration for certain other plugins relying on tree-sitter
-  -- nvim-ts-rainbow https://github.com/p00f/nvim-ts-rainbow
-  rainbow = {
-    enable = true,
-    extended_mode = true, -- match non brace related delimeters like html tags
+  autopairs = {
+   enable = true,
   },
   -- https://github.com/windwp/nvim-ts-autotag
   autotag = {
