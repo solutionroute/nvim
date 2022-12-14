@@ -1,64 +1,63 @@
--- mapping.lua
--- Note: Here, and in core.config.*, be sure to add "desc" attributes to each mapping.
--- "prefix" mappings are defined in core.config.which-key.lua for lack of a better place
+-- lua/core/mapping.lua
+-- Modes: n - normal; i - insert; v - visual; x - block mode; c - command
 
--- map(mode, key, action, opts)
 local map = vim.keymap.set
--- std opts for most maps
-local opts = { silent = true }
 
 -- <Leader> = space
-map("", "<Space>", "<Nop>", opts)
+map("", "<Space>", "<Nop>", {silent = true})
 vim.g.mapleader = " "
-
--- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
---
 
 -- map the individual way
 map("n", "<Tab>", "<cmd>bnext<CR>", {desc = "Buffer Next"})
 map("n", "<S-Tab>", "<cmd>bprevious<CR>", {desc = "Buffer Previous"})
-map("n", "<Leader>q", "<cmd>quitall<CR>", {desc = "Quit All"})
-map("n", "<Leader>w", "<cmd>write<CR>", {desc = "Write File"})
-map("n", "<C-s>", "<cmd>write<CR>", {desc = "Write File"})
+map("n", "<C-s>", "<cmd>write<CR>", {desc = "write buffer"}) -- same as <Leader>w
 
--- or the which-key way
+-- or the which-key way (these all for <Leader>)
 local wk = require("which-key")
+local tb = require("telescope.builtin")
+local gs = require("gitsigns")
 wk.register({
+  d = {"<cmd>bdelete<cr>", "close buffer"},
+  e = {"<cmd>NvimTreeFindFileToggle<cr>", "explore files"},
+  h = {"<cmd>nohlsearch<cr>", "highlight clear"},
+  q = {"<cmd>quitall<cr>", "quit all buffers"},
+  w = {"<cmd>write<cr>", "write buffer"},
   s = {
     name = "search", -- optional group name
-    b = { function() require("telescope.builtin").buffers() end, "Search buffers" },
-    f = { function() require("telescope.builtin").find_files() end, "Search files" },
-    h = { function() require("telescope.builtin").help_tags() end, "Search help" },
-    m = { function() require("telescope.builtin").marks() end, "Search marks" },
-    r = { function() require("telescope.builtin").oldfiles() end, "Search recent" },
+    b = { tb.buffers, "search buffers" },
+    f = { tb.find_files, "search files" },
+    g = { tb.live_grep, "grep files" },
+    h = { tb.help_tags, "search help" },
+    m = { tb.marks, "search marks" },
+    r = { tb.oldfiles, "search recent" },
+  },
+  l = {
+    name = "language server",
+    l = {"<cmd>LspInfo<cr>", "Lsp info" },
+    m = {"<cmd>Mason<cr>", "Mason" },
   },
   p = {
     name = "packer",
-    c = {"<cmd>PackerCompile<cr>", "Packer Compile" },
-    i = {"<cmd>PackerInstall<cr>", "Packer Install" },
-    r = {"<cmd>source $MYVIMRC<CR>", "Reload Configuration"},
-    s = {"<cmd>source $MYVIMRC | PackerSync <CR>", "Reload Config & Packer Sync"},
-    S = {"<cmd>PackerStatus<cr>", "Packer Status" },
-    u = {"<cmd>PackerUpdate<cr>", "Packer Update" },
+    c = {"<cmd>PackerCompile<cr>", "packer compile" },
+    i = {"<cmd>PackerInstall<cr>", "packer install" },
+    s = {"<cmd>PackerSync<cr>", "packer sync"},
+    S = {"<cmd>PackerStatus<cr>", "packer status" },
+    u = {"<cmd>PackerUpdate<cr>", "packer update" },
   },
   g = {
     name = "git",
-    S = {"<cmd>Telescope git_status<cr>", "Git Status"},
-    j = { function() require("gitsigns").next_hunk() end, "Next git hunk" },
-    k = { function() require("gitsigns").prev_hunk() end, "Previous git hunk" },
-    l = { function() require("gitsigns").blame_line() end, "View git blame" },
-    p = { function() require("gitsigns").preview_hunk() end, "Preview git hunk" },
-    h = { function() require("gitsigns").reset_hunk() end, "Reset git hunk" },
-    r = { function() require("gitsigns").reset_buffer() end, "Reset git buffer" },
-    s = { function() require("gitsigns").stage_hunk() end, "Stage git hunk" },
-    u = { function() require("gitsigns").undo_stage_hunk() end, "Unstage git hunk" },
-    d = { function() require("gitsigns").diffthis() end, "View git diff" },
+    g = {"<cmd>Telescope git_status<cr>", "Git Status"},
+    j = { gs.next_hunk, "Next git hunk" },
+    k = { gs.prev_hunk, "Previous git hunk" },
+    l = { gs.blame_line, "View git blame" },
+    p = { gs.preview_hunk, "Preview git hunk" },
+    h = { gs.reset_hunk, "Reset git hunk" },
+    r = { gs.reset_buffer, "Reset git buffer" },
+    s = { gs.stage_buffer, "Stage git buffer" },
+    S = { gs.stage_hunk, "Stage git hunk" },
+    t = { gs.toggle_deleted, "Toggle deleted" },
+    u = { gs.undo_stage_hunk, "Unstage git hunk" },
+    d = { gs.diffthis, "View git diff" },
   }
 }, { prefix = "<leader>" })
 
