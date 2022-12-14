@@ -2,6 +2,7 @@
 -- for simple one-liners, if needed, include them here:
 require("bufferline").setup{}
 require('Comment').setup()
+require("lsp_signature").setup{doc_lines=0, hint_enable=false}
 require("nvim-autopairs").setup{}
 require("nvim-lastplace").setup{}
 require('telescope').setup()
