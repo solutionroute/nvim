@@ -11,6 +11,8 @@ vim.g.mapleader = " "
 map("n", "<Tab>", "<cmd>bnext<CR>", {desc = "Buffer Next"})
 map("n", "<S-Tab>", "<cmd>bprevious<CR>", {desc = "Buffer Previous"})
 map("n", "<C-s>", "<cmd>write<CR>", {desc = "write buffer"}) -- same as <Leader>w
+map("i", "<C-s>", "<esc><cmd>write<CR>", {desc = "write buffer"}) -- same as <Leader>w
+map("i", ";;", "<esc>:", {desc = "esc: in insert mode"}) -- saves Esc: to get to cmd mode, ymmv
 
 -- or the which-key way (these all for <Leader>)
 local wk = require("which-key")
@@ -19,6 +21,7 @@ local gs = require("gitsigns")
 wk.register({
   d = {"<cmd>bdelete<cr>", "close buffer"},
   e = {"<cmd>NvimTreeFindFileToggle<cr>", "explore files"},
+  f = {"gwap<cr>", "format paragraph"},
   h = {"<cmd>nohlsearch<cr>", "highlight clear"},
   q = {"<cmd>quitall<cr>", "quit all buffers"},
   w = {"<cmd>write<cr>", "write buffer"},
