@@ -45,10 +45,6 @@ return packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- packer manages itself
   -- misc functions used by some plugins
   use 'nvim-lua/plenary.nvim'
-  -- colour schemes
-  use 'lunarvim/darkplus.nvim'
-  use 'folke/tokyonight.nvim'
-  use 'marko-cerovac/material.nvim'
   -- file browsing 
   use 'nvim-tree/nvim-tree.lua'
   -- icons used by nvim-tree, tabs/bufferline/lualine
@@ -103,6 +99,11 @@ return packer.startup(function(use)
   use {'rafamadriz/friendly-snippets', opt = true}
   -- function signature display as you type
   use {'ray-x/lsp_signature.nvim'}
+  -- colour schemes
+  use 'lunarvim/darkplus.nvim'
+  use 'folke/tokyonight.nvim' -- Dec 14 2022 failing
+  use {'catppuccin/nvim', as = 'catppuccin'}
+  use 'marko-cerovac/material.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
