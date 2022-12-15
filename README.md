@@ -3,6 +3,17 @@
 A keep-it-simple and understandable Neovim configuration meant for code and
 general purpose editing.
 
+## Prerequisites
+
+`nodejs` / `npm` are required for some language servers. You'll want to install
+/ configure `nodejs` such that you don't need root access to add packages. This
+is done easily at the user level by including a variable in your `.bashrc` or
+other shell configuration mechanism you may have:
+
+    # nodejs - global packages per user, avoids need for sudo in: npm i -g <pkgname>
+    # https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
+    export NPM_CONFIG_PREFIX=~/.npm-global
+
 ## Installation
 
 You'll want to backup (or rename) your existing `~/.config/nvim`; then:
