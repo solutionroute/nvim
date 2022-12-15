@@ -41,27 +41,27 @@ and restart nvim.
 
 ## File Layout
 
-Keeping it simple is the plan. See core/config/init.lua in particular.
+Keeping it understandable is the plan. See core/config/init.lua in particular.
 
-├── init.lua
-├── LICENSE
-├── lua
-│   ├── core
-│   │   ├── autocommands.lua
-│   │   ├── config
-│   │   │   ├── cmp.lua
-│   │   │   ├── colorizer.lua
-│   │   │   ├── gitsigns.lua
-│   │   │   ├── indent-blankline.lua
-│   │   │   ├── init.lua
-│   │   │   ├── lsp.lua
-│   │   │   ├── lualine.lua
-│   │   │   ├── nvim-tree.lua
-│   │   │   └── treesitter.lua
-│   │   ├── init.lua
-│   │   ├── mapping.lua
-│   │   ├── options.lua
-│   │   └── plugins.lua
-│   └── user-example.lua -- put your personal tweaks in user.lua & restart
-└── README.md
+    ├── init.lua
+    ├── LICENSE
+    ├── lua
+    │   ├── core
+    │   │   ├── autocommands.lua
+    │   │   ├── config
+    │   │   │   ├── cmp.lua
+    │   │   │   ├── colorizer.lua
+    │   │   │   ├── gitsigns.lua
+    │   │   │   ├── indent-blankline.lua
+    │   │   │   ├── init.lua
+    │   │   │   ├── lsp.lua
+    │   │   │   ├── lualine.lua
+    │   │   │   ├── nvim-tree.lua
+    │   │   │   └── treesitter.lua
+    │   │   ├── init.lua
+    │   │   ├── mapping.lua
+    │   │   ├── options.lua
+    │   │   └── plugins.lua
+    │   └── user-example.lua -- put your personal tweaks in user.lua & restart
+    └── README.md
 
