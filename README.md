@@ -3,8 +3,6 @@
 A keep-it-simple and understandable Neovim configuration meant for code and
 general purpose editing.
 
-- Track this repo; keep your own customizations separate in user.lua
-
 ## Installation
 
 You'll want to backup (or rename) your existing `~/.config/nvim`; then:
@@ -15,7 +13,7 @@ You'll want to backup (or rename) your existing `~/.config/nvim`; then:
     nvim +PackerClean +PackerSync
 
 You should be good to go; start `nvim`; you'll see treesitter and Mason
-installing parsers and language servers on your first run only.
+installing parsers and language servers on your first run only. 
 
 See <Leader>p for Packer commands and <Leader>l for LSP related commands such
 as Mason.
@@ -41,13 +39,10 @@ and restart nvim.
 
 ## File Layout
 
-Keeping it understandable is the plan. See core/config/init.lua in particular.
-
     ├── init.lua
     ├── LICENSE
     ├── lua
     │   ├── core
-    │   │   ├── autocommands.lua
     │   │   ├── config
     │   │   │   ├── cmp.lua
     │   │   │   ├── colorizer.lua
@@ -58,6 +53,7 @@ Keeping it understandable is the plan. See core/config/init.lua in particular.
     │   │   │   ├── lualine.lua
     │   │   │   ├── nvim-tree.lua
     │   │   │   └── treesitter.lua
+    │   │   ├── autocommands.lua
     │   │   ├── init.lua
     │   │   ├── mapping.lua
     │   │   ├── options.lua
