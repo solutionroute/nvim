@@ -9,3 +9,9 @@ opt.relativenumber = true -- Show relative numberline (default is false)
 local map = vim.keymap.set
 -- default only maps C-s in Normal mode
 map("i", "<C-s>", "<esc><cmd>write<CR>", {desc = "write buffer"}) -- same as <Leader>w
+
+-- colorschemes
+vim.cmd 'colorscheme darkplus' -- default
+-- vim.cmd 'colorscheme tokyonight-night'
+-- vim.g.material_style = "darker"
+-- vim.cmd 'colorscheme material'
