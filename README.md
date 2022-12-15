@@ -14,6 +14,10 @@ other shell configuration mechanism you may have:
     # https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
     export NPM_CONFIG_PREFIX=~/.npm-global
 
+Install the `treesitter` CLI:
+
+    npm install -g tree-sitter
+
 ## Installation
 
 You'll want to backup (or rename) your existing `~/.config/nvim`; then:
@@ -21,7 +25,7 @@ You'll want to backup (or rename) your existing `~/.config/nvim`; then:
     cd ~/.config
     git clone https://github.com/solutionroute/nvim.git nvim-solutionroute
     ln -sv nvim-solutionroute nvim
-    nvim +PackerClean +PackerSync
+    nvim +PackerSync
 
 You should be good to go; start `nvim`; you'll see treesitter and Mason
 installing parsers and language servers on your first run only. 
@@ -47,6 +51,25 @@ and restart nvim.
 - **Clipboard**: Interacts with the system Clipboard, i.e. `ctrl-c` to copy
   text from a web browser, for example, can be pasted into your nvim buffer
   using the standard p or P keys.
+
+## Issues
+
+As simple as we might try to make a `nvim` configuration, there's an awful lot
+going on behind the scenes in some of the plugins. Issues? Things to try:
+
+Plugins:
+
+    :PackerInstall
+
+Treesitter: 
+
+    :TSUpdate
+
+Language servers:
+
+    :Mason
+
+
 
 ## File Layout
 
