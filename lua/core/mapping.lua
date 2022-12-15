@@ -28,6 +28,7 @@ wk.register({
   s = {
     name = "search", -- optional group name
     b = { tb.buffers, "search buffers" },
+    c = { tb.colorscheme, "explore colorscheme" },
     f = { tb.find_files, "search files" },
     g = { tb.live_grep, "grep files" },
     h = { tb.help_tags, "search help" },

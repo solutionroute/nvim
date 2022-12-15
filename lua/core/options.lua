@@ -40,9 +40,5 @@ opt.updatetime = 300 -- Length of time to wait before triggering the plugin
 opt.wrap = false -- Disable wrapping of lines longer than the width of window
 opt.writebackup = false -- Disable making a backup before overwriting a file
 
--- colorschemes:
+-- colorscheme default (for other supported schemes, see nvim/lua/user-example.lua)
 vim.cmd 'colorscheme darkplus'
--- vim.cmd 'colorscheme tokyonight-night'
--- vim.g.material_style = "darker"
--- vim.cmd 'colorscheme material'
-

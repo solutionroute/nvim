@@ -100,8 +100,10 @@ return packer.startup(function(use)
   -- function signature display as you type
   use {'ray-x/lsp_signature.nvim'}
   -- colour schemes
-  use 'lunarvim/darkplus.nvim'
-  use 'folke/tokyonight.nvim' -- Dec 14 2022 failing
+  use 'lunarvim/darkplus.nvim' -- default
+  use 'EdenEast/nightfox.nvim'
+  use 'shaunsingh/nord.nvim'
+  use 'folke/tokyonight.nvim'
   use {'catppuccin/nvim', as = 'catppuccin'}
   use 'marko-cerovac/material.nvim'
 
