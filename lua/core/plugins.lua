@@ -43,6 +43,8 @@ packer.init {
 
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- packer manages itself
+  -- misc functions used by some plugins
+  use 'nvim-lua/plenary.nvim'
   -- colour schemes
   use 'lunarvim/darkplus.nvim'
   use 'folke/tokyonight.nvim'
@@ -76,7 +78,7 @@ return packer.startup(function(use)
   -- commenting
   use 'numToStr/Comment.nvim'
   -- git integration
-  use {'lewis6991/gitsigns.nvim', require = 'folke/which-key.nvim'}
+  use {'lewis6991/gitsigns.nvim', requires = 'folke/which-key.nvim'}
   -- LSP provision and completion; configured in config.lsp.lua
   use {
     "williamboman/mason.nvim",
