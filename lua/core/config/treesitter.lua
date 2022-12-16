@@ -1,13 +1,14 @@
 -- https://github.com/nvim-treesitter/nvim-treesitter
-local status_ok, _ = pcall(require, "nvim-treesitter")
-if not status_ok then
+local ok, m = pcall(require, "nvim-treesitter.configs")
+if not ok then
   return
 end
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all"
+
+m.setup {
+  -- A list of parser names, or "all"; note, some parsers require Nodejs / npm - see our README.md
   -- ensure_installed = "all",
   ensure_installed = {
-    "bash", "c", "css", "go", "gomod", "html", "javascript", "json", "lua",
+    "bash", "c", "css", "go", "gomod", "help", "html", "javascript", "json", "lua",
     "markdown", "make", "python", "svelte", "toml", "typescript", "vim", "vue", "yaml" },
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
