@@ -1,10 +1,10 @@
 -- https://github.com/akinsho/bufferline.nvim
-local bufferline_status_ok, bufferline = pcall(require, "bufferline")
-if not bufferline_status_ok then
+local ok, m = pcall(require, "bufferline")
+if not ok then
   return
 end
 
-bufferline.setup{options={
+m.setup{options={
   offsets = {{
     filetype = "NvimTree",
     -- text = "File Explorer",
