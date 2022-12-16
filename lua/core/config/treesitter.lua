@@ -5,8 +5,10 @@ if not status_ok then
 end
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = "all",
-  -- ensure_installed = { "bash", "c", "css", "go", "gomod", "html", "javascript", "lua", "rust", "ruby", "svelte", "toml", "typescript", "vim", "vue", },
+  -- ensure_installed = "all",
+  ensure_installed = {
+    "bash", "c", "css", "go", "gomod", "html", "javascript", "json", "lua",
+    "markdown", "make", "python", "svelte", "toml", "typescript", "vim", "vue", "yaml" },
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
   auto_install = true,
@@ -21,5 +23,12 @@ require'nvim-treesitter.configs'.setup {
   -- https://github.com/windwp/nvim-ts-autotag
   autotag = {
     enable = true,
-  }
+    incremental_selection = { enable = true },
+    indent = { enable = false },
+  },
+  -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  },
 }
