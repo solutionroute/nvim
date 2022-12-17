@@ -14,4 +14,13 @@ m.ensure_installed({
 
 m.nvim_workspace()
 
+m.set_preferences({
+    sign_icons = {
+        error = 'E',
+        warn = 'W',
+        hint = 'H',
+        info = 'I'
+    }
+})
+
 m.setup()
