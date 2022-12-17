@@ -22,7 +22,14 @@ wk.register({
   e = {"<cmd>NvimTreeFindFileToggle<cr>", "explore files"},
   f = {"gwap<cr>", "format paragraph"},
   h = {"<cmd>nohlsearch<cr>", "highlight clear"},
-  q = {"<cmd>quitall<cr>", "quit all buffers"},
+  q = {
+    name = "quit/sessions",
+    q = {"<cmd>quitall<cr>", "quit all buffers"},
+      -- https://github.com/folke/persistence.nvim
+    d = {"<cmd>lua require('persistence').load()<cr>", "session restore directory"},
+    l = {"<cmd>lua require('persistence').load({ last = true })<cr>", "session restore"},
+    n = {"<cmd>lua require('persistence').stop()<cr>", "session don't save"},
+  },
   w = {"<cmd>write<cr>", "write buffer"},
   s = {
     name = "search", -- optional group name
@@ -53,15 +60,16 @@ wk.register({
   },
   g = {
     name = "git",
-    g = {"<cmd>Telescope git_status<cr>", "Git Status"},
+    S = {"<cmd>Telescope git_status<cr>", "Git Status"},
+    f = { tb.git_files, "search git repo" },
     j = { gs.next_hunk, "Next git hunk" },
     k = { gs.prev_hunk, "Previous git hunk" },
     l = { gs.blame_line, "View git blame" },
     p = { gs.preview_hunk, "Preview git hunk" },
-    h = { gs.reset_hunk, "Reset git hunk" },
+    h = { gs.stage_hunk, "Stage git hunk" },
+    H = { gs.reset_hunk, "Reset git hunk" },
     r = { gs.reset_buffer, "Reset git buffer" },
     s = { gs.stage_buffer, "Stage git buffer" },
-    S = { gs.stage_hunk, "Stage git hunk" },
     t = { gs.toggle_deleted, "Toggle deleted" },
     u = { gs.undo_stage_hunk, "Unstage git hunk" },
     d = { gs.diffthis, "View git diff" },
