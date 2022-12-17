@@ -1,5 +1,9 @@
 # nvim
 
+A keep-it-simple and understandable Neovim configuration in lua, meant for code
+and general purpose editing.
+
+
                      d8b
                      Y8P
 
@@ -17,11 +21,6 @@
      Create ~/.config/nvim/user.lua
      for your choice of colourscheme,
      options, and key mappings.
-
-   https://github.com/solutionroute/nvim
-
-A keep-it-simple and understandable Neovim configuration in lua, meant for code
-and general purpose editing.
 
 ## Installation
 
