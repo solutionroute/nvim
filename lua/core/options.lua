@@ -23,7 +23,7 @@ opt.preserveindent = true -- Preserve indent structure as much as possible
 opt.pumheight = 10 -- Height of the pop up menu
 opt.relativenumber = false -- Show relative numberline
 opt.scrolloff = 8 -- Number of lines to keep above and below the cursor
-opt.shiftwidth = 2 -- Number of space inserted for indentation
+opt.shiftwidth = 4 -- Number of space inserted for indentation
 opt.showmode = false -- Disable showing modes in command line
 opt.showtabline = 2 -- always display tabline
 opt.sidescrolloff = 8 -- Number of columns to keep at the sides of the cursor
@@ -32,7 +32,7 @@ opt.smartcase = true -- Case sensitivie searching
 opt.splitbelow = true -- Splitting a new window below the current one
 opt.splitright = true -- Splitting a new window at the right of the current one
 opt.swapfile = false -- Disable use of swapfile for the buffer
-opt.tabstop = 2 -- Number of space in a tab
+opt.tabstop = 4 -- Number of space in a tab
 opt.termguicolors = true -- Enable 24-bit RGB color in the TUI
 opt.timeoutlen = 300 -- Length of time to wait for a mapped sequence
 opt.undofile = true -- Enable persistent undo
@@ -40,5 +40,3 @@ opt.updatetime = 300 -- Length of time to wait before triggering the plugin
 opt.wrap = false -- Disable wrapping of lines longer than the width of window
 opt.writebackup = false -- Disable making a backup before overwriting a file
 
--- colorscheme default (for other supported schemes, see nvim/lua/user-example.lua)
-vim.cmd 'colorscheme darkplus'
