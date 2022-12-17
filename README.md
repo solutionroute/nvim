@@ -22,6 +22,15 @@ and general purpose editing.
      for your choice of colourscheme,
      options, and key mappings.
 
+## Features
+
+- Usable default configuration for code and general purpose editing
+- Via [lsp-zero](https://github.com/VonHeikemen/lsp-zero.nvim), and Mason nvim
+  gets auto-installed and auto-configured (mostly) Language Servers 
+- Menus ([folke/which-key.nvim](https://github.com/folke/which-key.nvim)) guide
+  and help one become more vim keys aware
+- Optional user configuration file sourced at startup
+
 ## Installation
 
 You'll want to backup (or rename) your existing `~/.config/nvim`; then:
@@ -58,15 +67,6 @@ being clobbered by a future `git pull`:
 
 Place all your personalizations within `user.lua` and restart nvim.
 
-## Features
-
-- Usable default configuration for code and general purpose editing
-- Via [lsp-zero](https://github.com/VonHeikemen/lsp-zero.nvim), and Mason nvim
-  gets auto-installed and auto-configured (mostly) Language Servers 
-- Menus ([folke/which-key.nvim](https://github.com/folke/which-key.nvim)) guide
-  and help one become more vim keys aware
-- Optional user configuration file sourced at startup
-
 ## Tips
 
 - **Leader** and **menus**: The `<Leader>` key default is the space bar; hit
@@ -99,6 +99,9 @@ Include a variable in your `.bashrc` or other shell config:
     # https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
     export NPM_CONFIG_PREFIX=~/.npm-global
 
+Be sure your path to npm's bin directory is in your path (default:
+`$HOME/.npm-global/bin`).
+
 Start a new terminal session to reflect the change before installing anything with `npm -g`.
 
 ### Treesitter CLI (install only if needed)
@@ -107,9 +110,6 @@ After installing and configuring `nodejs` as above, if a desired parser
 requires the treesitter cli:
 
     npm install -g tree-sitter
-
-Be sure your path to npm's bin directory is in your path (default:
-$HOME/.npm-global/bin).
 
 ## File Layout
     .
