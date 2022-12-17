@@ -28,10 +28,10 @@ restart nvim. Future `git pull` activity won't touch your personalizations.
 ## Features
 
 - Usable default configuration for code and general purpose editing
-- Auto-installed and auto-configured (mostly) Language Servers and Treesitter
-  parsers
-- Menus ([folke/which-key.nvim](https://github.com/folke/which-key.nvim)) guide and
-  help one become more vim keys aware
+- Via [lsp-zero](https://github.com/VonHeikemen/lsp-zero.nvim), auto-installed
+  and auto-configured (mostly) Language Servers 
+- Menus ([folke/which-key.nvim](https://github.com/folke/which-key.nvim)) guide
+  and help one become more vim keys aware
 - Optional user configuration file sourced at startup
 
 ## Tips
@@ -56,11 +56,16 @@ restart nvim. Future `git pull` activity won't touch your personalizations.
 
 Having issues? You may wish to consider clearing out cached plugins and such:
 
+    # At minimum, try removing the compiled packer source (regenerates
+    # automatically) and restart nvim
+    rm ~/.config/nvim/plugin/packer_compiled.lua
+
+    # if that fails, remove cache files
     cd ~
     rm -rf .cache/nvim
     rm -rf .local/share/nvim
 
-Then repeat the [Installation](#Installation) steps as needed.
+Repeat the [Installation](#Installation) steps as needed.
 
 ### Node (possibly optional)
 
