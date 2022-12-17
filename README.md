@@ -24,28 +24,30 @@ and general purpose editing.
 
 ## Features
 
-- Usable default configuration for code and general purpose editing
-- Via [lsp-zero](https://github.com/VonHeikemen/lsp-zero.nvim), and Mason nvim
-  gets auto-installed and auto-configured (mostly) Language Servers 
+- Keeping it simple yet functional is a core feature.
+- Usable default configuration for code and general purpose editing.
+- Auto-installed and (mostly) auto-configured Language Servers via
+  [lsp-zero.nvim](https://github.com/VonHeikemen/lsp-zero.nvim) and
+  [mason.nvim](https://github.com/williamboman/mason.nvim).
 - Menus ([folke/which-key.nvim](https://github.com/folke/which-key.nvim)) guide
-  and help one become more vim keys aware
-- Optional user configuration file sourced at startup
+  and help one become more vim keys aware.
+- Personalize this while still tracking the repo.
 
 ## Installation
 
-You'll want to backup (or rename) your existing `~/.config/nvim`; then:
+Backup (or rename) any existing `~/.config/nvim`; then:
 
-    cd ~/.config
+    cd $HOME/.config
+    # rename existing without clobbering
+    mv -n nvim nvim-yourgithubname
+
+    # clone and link nvim to the repo
     git clone https://github.com/solutionroute/nvim.git nvim-solutionroute
     ln -sv nvim-solutionroute nvim
-    # Run nvim; if you've used a Packer managed nvim before, there may be some
-    # tidy proposed by packer.
-    nvim 
-    # allow nvim to install/cleanup any plugins, quit and restart nvim. Done.
-    nvim
 
-You should be good to go. This configuration will auto-install language servers
-as needed when you open a filetype for the first time.
+Then run `nvim`; the first time it is run it will determine if the [packer]()
+package manager needs to be bootstrapped. After the plugins have been
+installed, quit and restart `nvim`.
 
 If you run into any issues in bootstrapping your new `nvim` these will likely
 be due to leftovers from prior nvim installations. If you find yourself
@@ -56,6 +58,8 @@ is likely to help:
     rm $HOME/.config/nvim/plugin/packer_compiled.lua
     rm -rf $HOME/.cache/nvim
     rm -rf $HOME/.local/share/nvim
+
+Then run `nvim` to bootstrap packer; quit nvim when done and restart.
 
 ## Customization
 
