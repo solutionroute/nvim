@@ -48,12 +48,15 @@ is likely to help:
     rm -rf $HOME/.cache/nvim
     rm -rf $HOME/.local/share/nvim
 
-
 ## Customization
 
-If tracking this repo, to override options or mappings,  copy
-`nvim/user-example.lua` to `nvim/user.lua`; place your customizations there and
-restart nvim. Future `git pull` activity won't touch your personalizations.
+If tracking this repo, to override options or mappings without those efforts
+being clobbered by a future `git pull`:
+
+    cd $HOME/.config/nvim
+    cp -n user-example.lua user.lua
+
+Place all your personalizations within `user.lua` and restart nvim.
 
 ## Features
 
@@ -63,8 +66,6 @@ restart nvim. Future `git pull` activity won't touch your personalizations.
 - Menus ([folke/which-key.nvim](https://github.com/folke/which-key.nvim)) guide
   and help one become more vim keys aware
 - Optional user configuration file sourced at startup
-
-## Almost. No. Bling.
 
 ## Tips
 
@@ -84,7 +85,9 @@ restart nvim. Future `git pull` activity won't touch your personalizations.
   installer. When editing a new filetype, the system is also configured to
   prompt you to install a matching language server.
 
-### Node (install only if needed)
+## Optional
+
+### Nodejs (install only if needed)
 
 For language servers and treesitter parsers requiring `nodejs` infrastructure
 be in place, you'll want to install / configure `nodejs` such that you don't
@@ -108,7 +111,7 @@ requires the treesitter cli:
 Be sure your path to npm's bin directory is in your path (default:
 $HOME/.npm-global/bin).
 
-### File Layout
+## File Layout
     .
     ├── lua
     │   └── core
