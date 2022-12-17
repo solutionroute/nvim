@@ -1,5 +1,19 @@
-local utils = require "Comment.utils"
-require('Comment').setup({
+local ok, utils = pcall(require, "Comment.utils")
+if not ok then
+  return
+end
+
+local ok, utils = pcall(require, "Comment.utils")
+if not ok then
+  return
+end
+
+local ok, m = pcall(require, "Comment")
+if not ok then
+  return
+end
+
+m.setup({
   pre_hook = function(ctx)
     local location = nil
     if ctx.ctype == utils.ctype.blockwise then

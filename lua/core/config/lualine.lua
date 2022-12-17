@@ -1,4 +1,4 @@
-local status_ok, lualine = pcall(require, "lualine")
+local status_ok, m = pcall(require, "lualine")
 if not status_ok then
   return
 end
@@ -37,7 +37,7 @@ local spaces = function()
   return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
-lualine.setup {
+m.setup {
   options = {
     globalstatus = true,
     icons_enabled = true,

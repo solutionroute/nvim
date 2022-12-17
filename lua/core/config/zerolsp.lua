@@ -1,13 +1,17 @@
-vim.opt.signcolumn = 'yes' -- Reserve space for diagnostic icons
-local lsp = require('lsp-zero')
-lsp.preset('recommended')
+local ok, m = pcall(require, "lsp-zero")
+if not ok then
+  return
+end
 
-lsp.ensure_installed({
+vim.opt.signcolumn = 'yes' -- Reserve space for diagnostic icons
+m.preset('recommended')
+
+m.ensure_installed({
   'tsserver',
   'eslint',
   'sumneko_lua',
 })
 
-lsp.nvim_workspace()
+m.nvim_workspace()
 
-lsp.setup()
+m.setup()
