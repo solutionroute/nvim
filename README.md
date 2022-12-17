@@ -1,22 +1,7 @@
 # nvim
 
-A keep-it-simple and understandable Neovim configuration meant for code and
-general purpose editing.
-
-## Prerequisites
-
-`nodejs` / `npm` are required for some language servers. You'll want to install
-/ configure `nodejs` such that you don't need root access to add packages. This
-is done easily at the user level by including a variable in your `.bashrc` or
-other shell configuration mechanism you may have:
-
-    # nodejs - global packages per user, avoids need for sudo in: npm i -g <pkgname>
-    # https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
-    export NPM_CONFIG_PREFIX=~/.npm-global
-
-Install the `treesitter` CLI:
-
-    npm install -g tree-sitter
+A keep-it-simple and understandable Neovim configuration in lua, meant for code
+and general purpose editing.
 
 ## Installation
 
@@ -25,73 +10,100 @@ You'll want to backup (or rename) your existing `~/.config/nvim`; then:
     cd ~/.config
     git clone https://github.com/solutionroute/nvim.git nvim-solutionroute
     ln -sv nvim-solutionroute nvim
-    nvim +PackerSync
+    # Run nvim; if you've used a Packer managed nvim before, there may be some
+    # tidy proposed by packer.
+    nvim 
+    # allow nvim to install/cleanup any plugins, quit and restart nvim. Done.
+    nvim
 
-You should be good to go; start `nvim`; you'll see treesitter and Mason
-installing parsers and language servers on your first run only. 
-
-See <Leader>p for Packer commands and <Leader>l for LSP related commands such
-as Mason.
+You should be good to go. This configuration will auto-install language servers
+as needed when you open a filetype for the first time.
 
 ## Customization
 
-If you want to override options or mappings while still tracking this repo,
-copy `lua/user-example.lua` to `lua/user.lua`; place your customizations there
-and restart nvim.
+If tracking this repo, to override options or mappings,  copy
+`nvim/user-example.lua` to `nvim/user.lua`; place your customizations there and
+restart nvim. Future `git pull` activity won't touch your personalizations.
 
-## Quick Tips
+## Features
+
+- Usable default configuration for code and general purpose editing
+- Auto-installed and auto-configured (mostly) Language Servers and Treesitter
+  parsers
+- Menus ([folke/which-key.nvim](https://github.com/folke/which-key.nvim)) guide and
+  help one become more vim keys aware
+- Optional user configuration file sourced at startup
+
+## Tips
 
 - **Leader** and **menus**: The `<Leader>` key default is the space bar; hit
-  the <Leader> key in normal mode to see menus provided by
-  [folke/which-key.nvim](https://github.com/folke/which-key.nvim).
+  the <Leader> key in normal mode to see and navigate via menus.
 
 - **Common Mappings**: which-key also exposes menus in normal mode for common
-  movement-related mappings such as y (yank), g (go), d (delete).
+  movement-related mappings such as **d** (delete), **y** (yank), **g**
+  (go/movement), **z** (folds, spelling). In normal mode, press these keys
+  (once) to see more.
 
 - **Clipboard**: Interacts with the system Clipboard, i.e. `ctrl-c` to copy
   text from a web browser, for example, can be pasted into your nvim buffer
   using the standard p or P keys.
 
-## Issues
+- **Mason**: Use `:Mason` to bring up the interactive LSP installer. When
+  editing a new filetype, the system is also configured to prompt you to
+  install a matching language server.
 
-As simple as we might try to make a `nvim` configuration, there's an awful lot
-going on behind the scenes in some of the plugins. Issues? Things to try:
+### Clearing out an old nvim configuration
 
-Plugins:
+Having issues? You may wish to consider clearing out cached plugins and such:
 
-    :PackerInstall
+    cd ~
+    rm -rf .cache/nvim
+    rm -rf .local/share/nvim
 
-Treesitter: 
+Then repeat the [Installation](#Installation) steps as needed.
 
-    :TSUpdate
+### Node (possibly optional)
 
-Language servers:
+For language servers and treesitter parsers requiring `nodejs` infrastructure
+be in place, you'll want to install / configure `nodejs` such that you don't
+need root access to add packages.
 
-    :Mason
+Include a variable in your `.bashrc` or other shell config:
 
+    # nodejs - global packages per user, avoids need for sudo in: npm i -g <pkgname>
+    # https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
+    export NPM_CONFIG_PREFIX=~/.npm-global
 
+Start a new terminal session to reflect the change before installing anything with `npm -g`.
 
-## File Layout
+### Treesitter CLI (possibly optional)
 
+If a desired parser requires the treesitter cli:
+
+    npm install -g tree-sitter
+
+Be sure your path to npm's bin directory is in your path (default:
+$HOME/.npm-global/bin).
+
+### File Layout
+    .
+    ├── lua
+    │   └── core
+    │       ├── config
+    │       │   ├── bufferline.lua
+    │       │   ├── comment.lua
+    │       │   ├── gitsigns.lua
+    │       │   ├── init.lua
+    │       │   ├── lualine.lua
+    │       │   ├── nvim-tree.lua
+    │       │   ├── treesitter.lua
+    │       │   └── zerolsp.lua
+    │       ├── autocommands.lua
+    │       ├── init.lua    <- packer and plugins
+    │       ├── mapping.lua
+    │       └── options.lua
     ├── init.lua
     ├── LICENSE
-    ├── lua
-    │   ├── core
-    │   │   ├── config
-    │   │   │   ├── cmp.lua
-    │   │   │   ├── colorizer.lua
-    │   │   │   ├── gitsigns.lua
-    │   │   │   ├── indent-blankline.lua
-    │   │   │   ├── init.lua
-    │   │   │   ├── lsp.lua
-    │   │   │   ├── lualine.lua
-    │   │   │   ├── nvim-tree.lua
-    │   │   │   └── treesitter.lua
-    │   │   ├── autocommands.lua
-    │   │   ├── init.lua
-    │   │   ├── mapping.lua
-    │   │   ├── options.lua
-    │   │   └── plugins.lua
-    │   └── user-example.lua -- put your personal tweaks in user.lua & restart
-    └── README.md
+    ├── README.md
+    └── user-example.lua
 
