@@ -1,5 +1,5 @@
 -- default options
--- options and mappings can be overridden in nvim/lua/user.lua - see user-example.lua
+-- options and mappings can be overridden in nvim/user.lua - see nvim/user-example.lua
 
 local opt = vim.opt
 
@@ -15,17 +15,17 @@ opt.fileencoding = "utf-8" -- File content encoding for the buffer
 opt.fillchars = { eob = " " } -- Disable `~` on nonexistent lines
 opt.history = 100 -- Number of commands to remember in a history table
 opt.ignorecase = true -- Case insensitive searching
-opt.laststatus = 3 -- globalstatus
+opt.laststatus = 3 -- global status rather than per window
 opt.lazyredraw = true -- lazily redraw screen
 opt.mouse = "a" -- Enable mouse support
 opt.number = true -- Show numberline
 opt.preserveindent = true -- Preserve indent structure as much as possible
 opt.pumheight = 10 -- Height of the pop up menu
-opt.relativenumber = false -- Show relative numberline
+opt.relativenumber = false -- a love or hate thing
 opt.scrolloff = 8 -- Number of lines to keep above and below the cursor
 opt.shiftwidth = 4 -- Number of space inserted for indentation
 opt.showmode = false -- Disable showing modes in command line
-opt.showtabline = 2 -- always display tabline
+opt.showtabline = 0 -- don't use vim tabline
 opt.sidescrolloff = 8 -- Number of columns to keep at the sides of the cursor
 opt.signcolumn = "yes" -- Always show the sign column
 opt.smartcase = true -- Case sensitivie searching

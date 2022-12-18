@@ -1,10 +1,19 @@
 -- nvim/core/init.lua
-if vim.g.colors_name == nil then
-  -- because friends don't subject friends to "default", not even for bootstrapping
-  vim.o.termguicolors = true
-  vim.cmd [[colorscheme slate]] 
-end
+--
+-- This script:
+--
+-- 1. Defines all core plugins.
+-- 1. Bootstraps packer, if necessary, and reminds user to restart nvim afterwards.
+-- 3. Executes itself again if plugin changes are made, init.lua is saved.
+-- 4. Finally, loads the core/* module configurations plus the default
+--    autocommands, mapping and options.
+--
+-- Note on configuration:
+--
+-- Packages with very simple configuration needs are configured here; when it
+-- becomes more than boilerplate setup{}, configs are found in core/config/*.
 
+-- 'data' on *nix systems is $HOME/.local/share/nvim
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
 
@@ -14,7 +23,6 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
--- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
   return
@@ -32,26 +40,37 @@ packer.init {
   },
 }
 
+-- because friends don't subject friends to "default" and unreadable pink
+-- popup windows, not even for bootstrapping
+if vim.g.colors_name == nil then
+  vim.o.termguicolors = true
+  vim.cmd [[colorscheme slate]] 
+end
+
+-- core plugins defined here
 require('packer').startup(function(use)
--- return packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- packer manages itself
 
   -- colour schemes
-  use 'navarasu/onedark.nvim' -- Theme inspired by Atom
-  use 'lunarvim/darkplus.nvim' -- default
-  use 'EdenEast/nightfox.nvim'
+  use 'EdenEast/nightfox.nvim' -- default, multiple options (see user-example.lua)
+  use 'lunarvim/darkplus.nvim'
   use 'shaunsingh/nord.nvim'
   use 'folke/tokyonight.nvim'
-  use {'catppuccin/nvim', as = 'catppuccin'}
   use 'marko-cerovac/material.nvim'
 
   -- user interface
-  -- icons used by nvim-tree, tabs/bufferline/lualine
+  -- icons used by nvim-tree, tabs/bufferline/lualine/feline/etc
   use 'nvim-tree/nvim-web-devicons'
   -- tabs/buffers
-  use {'akinsho/bufferline.nvim', tag = 'v3.*', requires = 'nvim-web-devicons'}
+  -- use {'akinsho/bufferline.nvim', tag = 'v3.*', requires = 'nvim-web-devicons'}
   -- status line
-  use {'nvim-lualine/lualine.nvim', requires = 'nvim-web-devicons'}
+  use {'feline-nvim/feline.nvim',
+    config = function ()
+        require('feline').setup()
+        require('feline').winbar.setup()
+    end,
+    requires = 'nvim-web-devicons'}
+  -- use {'nvim-lualine/lualine.nvim', requires = 'nvim-web-devicons'}
   -- highlight rgb colour strings like #ffcc33
   use {'NvChad/nvim-colorizer.lua', config = function() require('colorizer').setup{} end }
   -- dynamic menus based on mappings
@@ -82,8 +101,18 @@ require('packer').startup(function(use)
   -- git integration
   use('tpope/vim-fugitive')
   use {'lewis6991/gitsigns.nvim', requires = 'folke/which-key.nvim'}
+
   -- file browsing 
-  use 'nvim-tree/nvim-tree.lua'
+  vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+  use {'nvim-neo-tree/neo-tree.nvim', branch = 'v2.x',
+    requires = {'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons', 'MunifTanjim/nui.nvim'},
+    config = function() 
+      require('neo-tree').setup({ 
+        source_selector = { winbar = true, },
+        use_libuv_file_watcher = true,
+      }) 
+    end }
+
   -- quick find... anything
   use {'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim', config = function() require('telescope').setup{} end }
 
@@ -128,8 +157,7 @@ require('packer').startup(function(use)
     end
   }
 
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
+  -- sync() will clean unused and install new plugins
   if is_bootstrap then
     require("packer").sync()
   end
@@ -157,18 +185,19 @@ if is_bootstrap then
   print '                                          '
   print '   https://github.com/solutionroute/nvim  '
   print '                                          '
-  return -- to avoid loading core modules before restart
+  return -- avoid loading core modules before restart
 end
 
 -- reload and run PackerSync whenever this file is saved
 vim.cmd [[
   augroup plugins_saved
     autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+    autocmd BufWritePost */core/init.lua source <afile> | PackerSync
   augroup end
 ]]
 
--- finally, only load the core modules if we've not just been bootstrapped
+-- finally, we load the core modules, options, mapping and autocommands.
+-- These are not loaded if we've just bootstrapped packer
 require('core.config') -- configuration for plugins
 require('core.options') -- nvim options
 require('core.mapping') -- key maps and menus, mostly driven by which-key

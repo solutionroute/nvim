@@ -19,9 +19,16 @@ local tb = require("telescope.builtin")
 local gs = require("gitsigns")
 wk.register({
   d = {"<cmd>bdelete<cr>", "close buffer"},
-  e = {"<cmd>NvimTreeFindFileToggle<cr>", "explore files"},
   f = {"gwap<cr>", "format paragraph"},
   h = {"<cmd>nohlsearch<cr>", "highlight clear"},
+  w = {"<cmd>write<cr>", "write buffer"},
+  e = {
+    name = "explore",
+    b = {"<cmd>Neotree toggle buffers reveal_force_cwd<cr>", "buffers"},
+    c = {"<cmd>Neotree close<cr>", "close"},
+    f = {"<cmd>Neotree toggle reveal_force_cwd<cr>", "files"},
+    g = {"<cmd>Neotree toggle git_status reveal_force_cwd<cr>", "git"},
+  },
   q = {
     name = "quit/sessions",
     q = {"<cmd>quitall<cr>", "quit all buffers"},
@@ -30,9 +37,8 @@ wk.register({
     l = {"<cmd>lua require('persistence').load({ last = true })<cr>", "session restore"},
     n = {"<cmd>lua require('persistence').stop()<cr>", "session don't save"},
   },
-  w = {"<cmd>write<cr>", "write buffer"},
   s = {
-    name = "search", -- optional group name
+    name = "search", 
     b = { tb.buffers, "search buffers" },
     c = { tb.colorscheme, "explore colorscheme" },
     f = { tb.find_files, "search files" },
