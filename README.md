@@ -1,7 +1,17 @@
 # nvim
 
-A keep-it-simple and understandable Neovim configuration in lua, meant for code
-and general purpose editing. For nvim 0.8+ and will continue to track current stable.
+A simple to understand yet capable Neovim configuration for coding or writing.
+
+Fork and extend, or clone and continue to track this repo and use `user.lua` to
+personalize as you wish.
+
+For code completion and diagnostics,
+[lsp-zero.nvim](https://github/VonHeikemen/lsp-zero.nvim) brings together (so
+you don't have to) all the bits needed to deliver multi-language code
+completion and diagnostics, along with automatic installation and (mostly)
+automatic configuration. One small tweak for Go is included.
+
+This configuration will continue to track stable Neovim (0.8+ currently).
 
 
                      d8b
@@ -22,17 +32,6 @@ and general purpose editing. For nvim 0.8+ and will continue to track current st
      for your choice of colourscheme,
      options, and key mappings.
 
-## Features
-
-- Keeping it simple yet functional is a core feature.
-- Usable default configuration for code and general purpose editing.
-- Auto-installed and (mostly) auto-configured Language Servers via
-  [lsp-zero.nvim](https://github.com/VonHeikemen/lsp-zero.nvim) and
-  [mason.nvim](https://github.com/williamboman/mason.nvim).
-- Menus ([folke/which-key.nvim](https://github.com/folke/which-key.nvim)) guide
-  and help one become more vim keys aware.
-- Personalize this while still tracking the repo.
-
 ## Installation
 
 Backup (or rename) any existing `~/.config/nvim`; then:
@@ -45,51 +44,63 @@ Backup (or rename) any existing `~/.config/nvim`; then:
     git clone https://github.com/solutionroute/nvim.git nvim-solutionroute
     ln -sv nvim-solutionroute nvim
 
-Then run `nvim`; the first time it is run it will determine if the [packer]()
-package manager needs to be bootstrapped. After the plugins have been
-installed, quit and restart `nvim`.
+Then run `nvim`; Packer will self-install if required and automatically install
+or update necessary plugins. After the bootstrap is complete, quit `nvim` and
+restart and enjoy your newly configured editor.
 
-If you run into any issues in bootstrapping your new `nvim` these will likely
-be due to leftovers from prior nvim installations. If you find yourself
-switching this up frequently, or testing your own nvim, a `cleannvim.sh` script
-is likely to help:
+If the bootstrap process runs into any issues due to leftover files from
+another configuration, consider clearing out cached and shared files - create a
+script or copy and paste the relevant commands:
 
     #!/bin/sh
     rm $HOME/.config/nvim/plugin/packer_compiled.lua
     rm -rf $HOME/.cache/nvim
     rm -rf $HOME/.local/share/nvim
 
-Then run `nvim` to bootstrap packer; quit nvim when done and restart.
+Then again run `nvim` to bootstrap packer; quit nvim when done and restart.
 
 ## Customization
 
 If tracking this repo, to override options or mappings without those efforts
-being clobbered by a future `git pull`:
+being clobbered by a future update, create `user.lua` and edit to taste:
 
     cd $HOME/.config/nvim
     cp -n user-example.lua user.lua
 
 Place all your personalizations within `user.lua` and restart nvim.
 
+Coming soon: user-supplied plugin management.
+
+## Key Features 
+
+- Automatic installation/bootstrap as is the norm these days
+- Zero configuration required for most programming languages
+- Code completion and diagnostics; uninstall that vscode ;-)
+- Auto imports and format for Go and other languages
+- Git indicators (gitsigns) and commands (Fugitive)
+- Optionally restore a previous editing session
+- Telescope of course
+- And, which-key menus aiding your finger muscle-memory
+
 ## Tips
 
-- **Leader** and **menus**: The `<Leader>` key default is the space bar; hit
-  the <Leader> key in normal mode to see and navigate via menus.
+- **Leader**: The `<Leader>` key default is <Space>.
 
 - **Common Mappings**: which-key also exposes menus in normal mode for common
-  movement-related mappings such as **d** (delete), **y** (yank), **g**
-  (go/movement), **z** (folds, spelling). In normal mode, press these keys
-  (once) to see more.
+  movement-related mappings such as **c** (cut/change), **d** (delete), **y**
+  (yank), **g** (go/movement), **v** (visual), **z** (folds, spelling). In
+  normal mode, press these keys (once) to see more. Multi-key mappings like
+  <C-w> will also display a menu after timeout.
 
 - **Clipboard**: Interacts with the system Clipboard, i.e. `ctrl-c` to copy
   text from a web browser, for example, can be pasted into your nvim buffer
   using the standard p or P keys.
 
 - **Mason**: Use `:Mason` (or <Leader>lm) to bring up the interactive LSP
-  installer. When editing a new filetype, the system is also configured to
+  installer. When editing a new filetype, the system will also  
   prompt you to install a matching language server.
 
-## Optional
+## Optional Software
 
 ### Nodejs (install only if needed)
 
@@ -116,6 +127,12 @@ requires the treesitter cli:
     npm install -g tree-sitter
 
 ## File Layout
+
+The core of this configuration revolves around `nvim/lua/core/init.lua` where
+packer and plugins are defined; simple configurations are attached to the
+plugin declaration, while anything more complicated goes into `config/*`. 
+
+User-provided configuration will be picked up if `nvim/user.lua` exists.
 
     .
     ├── lua
