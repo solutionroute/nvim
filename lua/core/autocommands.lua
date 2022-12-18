@@ -1,6 +1,6 @@
 -- nvim/lua/core/autocommands.lua
 
--- Format on save for Go language
+-- Check and update imports, format on save for Go language
 function go_org_imports(wait_ms)
   local params = vim.lsp.util.make_range_params()
   params.context = {only = {"source.organizeImports"}}
@@ -10,9 +10,9 @@ function go_org_imports(wait_ms)
       if r.edit then
         local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
         vim.lsp.util.apply_workspace_edit(r.edit, enc)
+        vim.lsp.buf.format()
       end
     end
   end
 end
 vim.cmd "autocmd BufWritePre *.go lua go_org_imports()"
-
