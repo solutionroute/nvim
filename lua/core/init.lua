@@ -2,16 +2,18 @@
 --
 -- This script:
 --
--- 1. Defines all core plugins.
--- 1. Bootstraps packer, if necessary, and reminds user to restart nvim afterwards.
--- 3. Executes itself again if plugin changes are made, init.lua is saved.
--- 4. Finally, loads the core/* module configurations plus the default
+-- 1. Defines all core plugins
+-- 2. Bootstraps packer, if necessary, on first load
+-- 3. Executes itself again whenever this file is saved to d/l or clean up plugins
+-- 4. At the end, loads the core/* module configurations plus the default
 --    autocommands, mapping and options.
 --
--- Note on configuration:
+-- Plugin configuration:
 --
--- Packages with very simple configuration needs are configured here; when it
--- becomes more than boilerplate setup{}, configs are found in core/config/*.
+-- 1. Packages with very simple configuration needs are configured here
+-- 2. Colorscheme plugins are to be configured in a user.lua, if needed
+-- 3. For anything more than boilerplate plugin setup{}, configs are placed in 
+--    in core/config/*
 
 -- 'data' on *nix systems is $HOME/.local/share/nvim
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
@@ -28,58 +30,96 @@ if not status_ok then
   return
 end
 
--- Have packer use a popup window
 packer.init {
   display = {
     open_fn = function()
       return require("packer.util").float { border = "rounded" }
-    end,
-  },
-  git = {
-    clone_timeout = 300, -- Timeout, in seconds, for git clones
-  },
+    end,},
+  git = {clone_timeout = 300,}, -- Timeout (s)
 }
 
--- because friends don't subject friends to "default" and unreadable pink
+-- Because friends don't subject friends to "default" and unreadable magenta 
 -- popup windows, not even for bootstrapping
 if vim.g.colors_name == nil then
   vim.o.termguicolors = true
-  vim.cmd [[colorscheme slate]] 
+  vim.cmd [[colorscheme slate]]
 end
 
--- core plugins defined here
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- packer manages itself
 
-  -- colour schemes
-  use 'EdenEast/nightfox.nvim' -- default, multiple options (see user-example.lua)
-  use 'lunarvim/darkplus.nvim'
-  use 'shaunsingh/nord.nvim'
-  use 'folke/tokyonight.nvim'
-  use 'marko-cerovac/material.nvim'
+  use {'VonHeikemen/lsp-zero.nvim', -- Zero (almost) configuration of LSP
+    requires = { 
+      -- LSP Support
+      {'neovim/nvim-lspconfig'},
+      {'williamboman/mason.nvim'},
+      {'williamboman/mason-lspconfig.nvim'},
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp'},
+      {'hrsh7th/cmp-buffer'},
+      {'hrsh7th/cmp-path'},
+      {'saadparwaiz1/cmp_luasnip'},
+      {'hrsh7th/cmp-nvim-lsp'},
+      {'hrsh7th/cmp-nvim-lua'},
+      -- Snippets
+      {'L3MON4D3/LuaSnip'},
+      {'rafamadriz/friendly-snippets'},
+    }
+  }
 
-  -- user interface
-  -- icons used by nvim-tree, tabs/bufferline/lualine/feline/etc
-  use 'nvim-tree/nvim-web-devicons'
-  -- tabs/buffers
-  -- use {'akinsho/bufferline.nvim', tag = 'v3.*', requires = 'nvim-web-devicons'}
-  -- status line
-  use {'feline-nvim/feline.nvim',
-    config = function ()
-        require('feline').setup()
-        require('feline').winbar.setup()
-    end,
-    requires = 'nvim-web-devicons'}
-  -- use {'nvim-lualine/lualine.nvim', requires = 'nvim-web-devicons'}
-  -- highlight rgb colour strings like #ffcc33
-  use {'NvChad/nvim-colorizer.lua', config = function() require('colorizer').setup{} end }
-  -- dynamic menus based on mappings
-  use {'folke/which-key.nvim', config = function() require('which-key').setup{} end }
-  -- restore cursor position in file
-  use {'ethanholz/nvim-lastplace', config = function() require('nvim-lastplace').setup{} end }
+  use {'ray-x/lsp_signature.nvim', -- function signature display as you type
+    config = function()
+      require('lsp_signature').setup{doc_lines=0, hint_enable=false}
+    end
+  }
+
   -- commenting
   use 'numToStr/Comment.nvim'
-  -- automatic session save
+
+  use {'nvim-treesitter/nvim-treesitter', -- powers many code highlighting/editing/nav plugins
+    run = function()
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
+  }
+  -- configured within treesitter:
+  use {'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter'} -- Context based commenting
+  use {'windwp/nvim-ts-autotag', after = 'nvim-treesitter'} -- like autopairs but for html and more, config in treesitter
+  use { "RRethy/vim-illuminate", after = 'nvim-treesitter'} -- highlight like terms (uses ts/lsp/regex)
+
+  -- match braces, brackets such
+  use {'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup{} end }
+
+  -- code indentation/block identification
+  use {'lukas-reineke/indent-blankline.nvim', -- indent lines, configured to highlight current block
+    config = function()
+      require('indent_blankline').setup{
+        show_current_context = true,
+        show_current_context_start = false,
+        show_trailing_blankline_indent = false,
+      }
+    end}
+
+  -- git integration
+  use('tpope/vim-fugitive')
+  use {'lewis6991/gitsigns.nvim', requires = 'folke/which-key.nvim'}
+
+  -- icons used by so many plugins
+  use 'nvim-tree/nvim-web-devicons'
+
+  use {'feline-nvim/feline.nvim', -- status line
+    config = function ()
+        require('feline').setup()
+        require('feline').winbar.setup() -- puts a small window title up
+    end,
+    requires = 'nvim-web-devicons' }
+
+  -- dynamic menus based on mappings
+  use {'folke/which-key.nvim', config = function() require('which-key').setup{} end }
+
+  -- restore cursor position in file on re-open
+  use {'ethanholz/nvim-lastplace', config = function() require('nvim-lastplace').setup{} end }
+  -- automatic session save; session restore is human driven (<Leader>q...)
   use({ "folke/persistence.nvim",
     event = "BufReadPre", -- this will only start session saving when an actual file was opened
     module = "persistence",
@@ -87,22 +127,11 @@ require('packer').startup(function(use)
     require("persistence").setup()
     end,
   })
-  -- match braces, brackets and such
-  use {'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup{} end }
-  -- indent lines, configured to highlight current block
-  use {'lukas-reineke/indent-blankline.nvim',
-    config = function()
-      require('indent_blankline').setup{
-        show_current_context = true,
-        show_current_context_start = false,
-      }
-    end
-  }
-  -- git integration
-  use('tpope/vim-fugitive')
-  use {'lewis6991/gitsigns.nvim', requires = 'folke/which-key.nvim'}
 
-  -- file browsing 
+  -- quick find... anything; m
+  use {'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim', config = function() require('telescope').setup{} end }
+
+  -- file browsing  (<Leader>e...) prefer using Telescope, are times when a tree view can be useful
   vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
   use {'nvim-neo-tree/neo-tree.nvim', branch = 'v2.x',
     requires = {'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons', 'MunifTanjim/nui.nvim'},
@@ -113,57 +142,32 @@ require('packer').startup(function(use)
       }) 
     end }
 
-  -- quick find... anything
-  use {'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim', config = function() require('telescope').setup{} end }
+  -- highlight rgb colour strings like #ffcc33
+  use {'NvChad/nvim-colorizer.lua', config = function() require('colorizer').setup{} end }
 
-  -- Treesitter & LSP Support
-  -- code highlighting and more
-  use {'nvim-treesitter/nvim-treesitter',
-    run = function()
-      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-      ts_update()
-    end,
-  }
-  -- treesitter dependent, see treesitter config
-  use {'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter'} -- Context based commenting
-  use {'windwp/nvim-ts-autotag', after = 'nvim-treesitter'} -- like autopairs but for html and more, config in treesitter
-  use { "RRethy/vim-illuminate", after = 'nvim-treesitter'} -- highlight like terms (uses ts/lsp/regex)
+  -- colour schemes: put any needed configuration in user.lua override
+  use 'EdenEast/nightfox.nvim'
+  use 'folke/tokyonight.nvim'
+  use 'lunarvim/darkplus.nvim'
+  use 'navarasu/onedark.nvim' 
+  use 'marko-cerovac/material.nvim'
 
-  -- Zero (almost) configuration of LSP
-  use {'VonHeikemen/lsp-zero.nvim',
-    requires = {
-      -- LSP Support
-      {'neovim/nvim-lspconfig'},
-      {'williamboman/mason.nvim'},
-      {'williamboman/mason-lspconfig.nvim'},
+  -- TODO include (optional) user plugins
 
-      -- Autocompletion
-      {'hrsh7th/nvim-cmp'},
-      {'hrsh7th/cmp-buffer'},
-      {'hrsh7th/cmp-path'},
-      {'saadparwaiz1/cmp_luasnip'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'hrsh7th/cmp-nvim-lua'},
-
-      -- Snippets
-      {'L3MON4D3/LuaSnip'},
-      {'rafamadriz/friendly-snippets'},
-    }
-  }
-  -- function signature display as you type
-  use {'ray-x/lsp_signature.nvim',
-    config = function()
-      require('lsp_signature').setup{doc_lines=0, hint_enable=false}
-    end
-  }
-
-  -- sync() will clean unused and install new plugins
   if is_bootstrap then
     require("packer").sync()
   end
 end)
 
-if is_bootstrap then
+-- reload and run PackerSync whenever this file is saved
+vim.cmd [[
+  augroup plugins_saved
+    autocmd!
+    autocmd BufWritePost */core/init.lua source <afile> | PackerSync
+  augroup end
+]]
+
+if is_bootstrap then -- avoid loading core modules before restart
   print '                                          '
   print '                     d8b                  '
   print '                     Y8P                  '
@@ -185,16 +189,8 @@ if is_bootstrap then
   print '                                          '
   print '   https://github.com/solutionroute/nvim  '
   print '                                          '
-  return -- avoid loading core modules before restart
+  return 
 end
-
--- reload and run PackerSync whenever this file is saved
-vim.cmd [[
-  augroup plugins_saved
-    autocmd!
-    autocmd BufWritePost */core/init.lua source <afile> | PackerSync
-  augroup end
-]]
 
 -- finally, we load the core modules, options, mapping and autocommands.
 -- These are not loaded if we've just bootstrapped packer
