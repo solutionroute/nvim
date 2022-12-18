@@ -13,11 +13,15 @@
 --   https://github.com/nanotee/nvim-lua-guide
 --   https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/
 
-
+-- system level items that should be set before plugins are loaded
 -- nvim-tree: disable netrw at startup to avoid race condition 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+-- set <Space> as leader
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
+-- plugins occasionally need fairly current versions
 local min_minor = 8 -- nvim-0.8+
 
 if vim.version().minor >= min_minor or vim.version().prerelease then
