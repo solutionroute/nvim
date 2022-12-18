@@ -4,41 +4,41 @@
 local map = vim.keymap.set
 
 -- <Leader> = space
-map("", "<Space>", "<Nop>", {silent = true})
+map("", "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
 
 -- map the individual way
-map("n", "<Tab>", "<cmd>bnext<CR>", {desc = "Buffer Next"})
-map("n", "<S-Tab>", "<cmd>bprevious<CR>", {desc = "Buffer Previous"})
-map("n", "<C-s>", "<cmd>write<CR>", {desc = "write buffer"}) -- same as <Leader>w
-map("i", "<C-s>", "<esc><cmd>write<CR>", {desc = "write buffer"}) -- same as <Leader>w
+map("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Buffer Next" })
+map("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "Buffer Previous" })
+map("n", "<C-s>", "<cmd>write<CR>", { desc = "write buffer" }) -- same as <Leader>w
+map("i", "<C-s>", "<esc><cmd>write<CR>", { desc = "write buffer" }) -- same as <Leader>w
 
 -- or the which-key way (these all for <Leader>)
 local wk = require("which-key")
 local tb = require("telescope.builtin")
 local gs = require("gitsigns")
 wk.register({
-  d = {"<cmd>bdelete<cr>", "close buffer"},
-  f = {"gwap<cr>", "format paragraph"},
-  h = {"<cmd>nohlsearch<cr>", "highlight clear"},
-  w = {"<cmd>write<cr>", "write buffer"},
+  d = { "<cmd>bdelete<cr>", "close buffer" },
+  f = { "gwap<cr>", "format paragraph" },
+  h = { "<cmd>nohlsearch<cr>", "highlight clear" },
+  w = { "<cmd>write<cr>", "write buffer" },
   e = {
     name = "explore",
-    b = {"<cmd>Neotree toggle buffers reveal_force_cwd<cr>", "buffers"},
-    c = {"<cmd>Neotree close<cr>", "close"},
-    f = {"<cmd>Neotree toggle reveal_force_cwd<cr>", "files"},
-    g = {"<cmd>Neotree toggle git_status reveal_force_cwd<cr>", "git"},
+    b = { "<cmd>Neotree toggle buffers reveal_force_cwd<cr>", "buffers" },
+    c = { "<cmd>Neotree close<cr>", "close" },
+    f = { "<cmd>Neotree toggle reveal_force_cwd<cr>", "files" },
+    g = { "<cmd>Neotree toggle git_status reveal_force_cwd<cr>", "git" },
   },
   q = {
     name = "quit/sessions",
-    q = {"<cmd>quitall<cr>", "quit all buffers"},
-      -- https://github.com/folke/persistence.nvim
-    d = {"<cmd>lua require('persistence').load()<cr>", "session restore directory"},
-    l = {"<cmd>lua require('persistence').load({ last = true })<cr>", "session restore"},
-    n = {"<cmd>lua require('persistence').stop()<cr>", "session don't save"},
+    q = { "<cmd>quitall<cr>", "quit all buffers" },
+    -- https://github.com/folke/persistence.nvim
+    d = { "<cmd>lua require('persistence').load()<cr>", "session restore directory" },
+    l = { "<cmd>lua require('persistence').load({ last = true })<cr>", "session restore" },
+    n = { "<cmd>lua require('persistence').stop()<cr>", "session don't save" },
   },
   s = {
-    name = "search", 
+    name = "search",
     b = { tb.buffers, "search buffers" },
     c = { tb.colorscheme, "explore colorscheme" },
     f = { tb.find_files, "search files" },
@@ -53,20 +53,20 @@ wk.register({
     name = "language server",
     d = { tb.lsp_definitions, "Go to Definition" }, -- also Ctrl-W]
     b = { tb.lsp_document_symbols, "List symbols in buffer" },
-    l = {"<cmd>LspInfo<cr>", "Lsp info" },
-    m = {"<cmd>Mason<cr>", "Mason" },
+    l = { "<cmd>LspInfo<cr>", "Lsp info" },
+    m = { "<cmd>Mason<cr>", "Mason" },
   },
   p = {
     name = "packer",
-    c = {"<cmd>PackerCompile<cr>", "packer compile" },
-    i = {"<cmd>PackerInstall<cr>", "packer install" },
-    s = {"<cmd>PackerSync<cr>", "packer sync"},
-    S = {"<cmd>PackerStatus<cr>", "packer status" },
-    u = {"<cmd>PackerUpdate<cr>", "packer update" },
+    c = { "<cmd>PackerCompile<cr>", "packer compile" },
+    i = { "<cmd>PackerInstall<cr>", "packer install" },
+    s = { "<cmd>PackerSync<cr>", "packer sync" },
+    S = { "<cmd>PackerStatus<cr>", "packer status" },
+    u = { "<cmd>PackerUpdate<cr>", "packer update" },
   },
   g = {
     name = "git",
-    S = {"<cmd>Telescope git_status<cr>", "Git Status"},
+    S = { "<cmd>Telescope git_status<cr>", "Git Status" },
     f = { tb.git_files, "search git repo" },
     j = { gs.next_hunk, "Next git hunk" },
     k = { gs.prev_hunk, "Previous git hunk" },
@@ -81,4 +81,3 @@ wk.register({
     d = { gs.diffthis, "View git diff" },
   }
 }, { prefix = "<leader>" })
-
