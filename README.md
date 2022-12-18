@@ -1,7 +1,7 @@
 # nvim
 
 A keep-it-simple and understandable Neovim configuration in lua, meant for code
-and general purpose editing.
+and general purpose editing. For nvim 0.8+ and will continue to track current stable.
 
 
                      d8b
