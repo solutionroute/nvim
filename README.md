@@ -82,46 +82,38 @@ Coming soon: user-supplied plugin management.
 - Telescope of course
 - And, which-key menus aiding your finger muscle-memory
 
-## Tips
+## Leader & Menus 
 
-- **Leader**: The `<Leader>` key default is <Space>.
+- **Leader**: The `<Leader>` key default is `<Space>`.
 
 - **Common Mappings**: which-key also exposes menus in normal mode for common
   movement-related mappings such as **c** (cut/change), **d** (delete), **y**
   (yank), **g** (go/movement), **v** (visual), **z** (folds, spelling). In
   normal mode, press these keys (once) to see more. Multi-key mappings like
-  <C-w> will also display a menu after timeout.
-
-- **Clipboard**: Interacts with the system Clipboard, i.e. `ctrl-c` to copy
-  text from a web browser, for example, can be pasted into your nvim buffer
-  using the standard p or P keys.
-
-- **Mason**: Use `:Mason` (or <Leader>lm) to bring up the interactive LSP
-  installer. When editing a new filetype, the system will also  
-  prompt you to install a matching language server.
+  `<C-w>` will also display a menu after timeout.
 
 ## Optional Software
 
 ### Nodejs (install only if needed)
 
-For language servers and treesitter parsers requiring `nodejs` infrastructure
-be in place, you'll want to install / configure `nodejs` such that you don't
-need root access to add packages.
+Some language servers and treesitter parsers rely on `nodejs`, so you *may*
+need to install Node and a package manager on your machine. To install /
+configure `nodejs` and you'll probably want to do so in a way that doesn't
+require root access to add packages.
 
-Include a variable in your `.bashrc` or other shell config:
+1. Include a variable in your `.bashrc` or relevant shell config file:
 
     # nodejs - global packages per user, avoids need for sudo in: npm i -g <pkgname>
     # https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
     export NPM_CONFIG_PREFIX=~/.npm-global
 
-Be sure your path to npm's bin directory is in your path (default:
-`$HOME/.npm-global/bin`).
+2. Be sure your path to npm's bin directory is in your path (default: `$HOME/.npm-global/bin`).
 
 Start a new terminal session to reflect the change before installing anything with `npm -g`.
 
 ### Treesitter CLI (install only if needed)
 
-After installing and configuring `nodejs` as above, if a desired parser
+After installing and configuring `nodejs`, if a desired parser
 requires the treesitter cli:
 
     npm install -g tree-sitter
