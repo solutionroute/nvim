@@ -116,20 +116,19 @@ requires the treesitter cli:
     npm install -g tree-sitter
 
 ## File Layout
+
     .
     ├── lua
     │   └── core
+    │       ├── autocommands.lua
     │       ├── config
-    │       │   ├── bufferline.lua
+    │       │   ├── colorscheme.lua
     │       │   ├── comment.lua
     │       │   ├── gitsigns.lua
     │       │   ├── init.lua
-    │       │   ├── lualine.lua
-    │       │   ├── nvim-tree.lua
     │       │   ├── treesitter.lua
     │       │   └── zerolsp.lua
-    │       ├── autocommands.lua
-    │       ├── init.lua    <- packer and plugins
+    │       ├── init.lua
     │       ├── mapping.lua
     │       └── options.lua
     ├── init.lua
