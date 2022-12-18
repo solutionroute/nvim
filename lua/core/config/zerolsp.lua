@@ -7,8 +7,10 @@ vim.opt.signcolumn = 'yes' -- Reserve space for diagnostic icons
 m.preset('recommended')
 
 m.ensure_installed({
-  'tsserver',
   'eslint',
+  'gopls',
+  'sqlls',
+  'tsserver',
   'sumneko_lua',
 })
 

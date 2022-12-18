@@ -1,5 +1,6 @@
 -- nvim/lua/core/config/init.lua
--- simple configs are found in nvim/lua/core/plugins.lua
+-- Only more complex configurations get their own module; the balance
+-- are found within nvim/lua/core/init.lue with the plugin declarations.
 require('core.config.comment')
 require('core.config.gitsigns')
 require('core.config.treesitter')
