@@ -10,9 +10,9 @@ function go_org_imports(wait_ms)
       if r.edit then
         local enc = (vim.lsp.get_client_by_id(cid) or {}).offset_encoding or "utf-16"
         vim.lsp.util.apply_workspace_edit(r.edit, enc)
-        vim.lsp.buf.format()
       end
     end
   end
 end
 vim.cmd "autocmd BufWritePre *.go lua go_org_imports()"
+vim.cmd "autocmd BufWritePre *.go lua vim.lsp.buf.format()"
