@@ -103,13 +103,15 @@ require root access to add packages.
 
 1. Include a variable in your `.bashrc` or relevant shell config file:
 
-    # nodejs - global packages per user, avoids need for sudo in: npm i -g <pkgname>
-    # https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
-    export NPM_CONFIG_PREFIX=~/.npm-global
+        # nodejs - global packages per user, avoids need for sudo in: npm i -g <pkgname>
+        # https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
+        export NPM_CONFIG_PREFIX=~/.npm-global
 
-2. Be sure your path to npm's bin directory is in your path (default: `$HOME/.npm-global/bin`).
+2. Be sure your path to npm's bin directory is in your path. Ddefault:
 
-Start a new terminal session to reflect the change before installing anything with `npm -g`.
+        $HOME/.npm-global/bin
+
+3. Start a new terminal session to reflect the change before installing anything with `npm -g`.
 
 ### Treesitter CLI (install only if needed)
 
@@ -144,4 +146,3 @@ User-provided configuration will be picked up if `nvim/user.lua` exists.
     ├── LICENSE
     ├── README.md
     └── user-example.lua
-
