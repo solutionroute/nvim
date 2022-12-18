@@ -12,7 +12,7 @@
 --
 -- 1. Packages with very simple configuration needs are configured here
 -- 2. Colorscheme plugins are to be configured in a user.lua, if needed
--- 3. For anything more than boilerplate plugin setup{}, configs are placed in 
+-- 3. For anything more than boilerplate plugin setup{}, configs are placed in
 --    in core/config/*
 
 -- 'data' on *nix systems is $HOME/.local/share/nvim
@@ -34,11 +34,12 @@ packer.init {
   display = {
     open_fn = function()
       return require("packer.util").float { border = "rounded" }
-    end,},
-  git = {clone_timeout = 300,}, -- Timeout (s)
+    end,
+  },
+  git = { clone_timeout = 300, }, -- Timeout (s)
 }
 
--- Because friends don't subject friends to "default" and unreadable magenta 
+-- Because friends don't subject friends to "default" and unreadable magenta
 -- popup windows, not even for bootstrapping
 if vim.g.colors_name == nil then
   vim.o.termguicolors = true
@@ -48,108 +49,109 @@ end
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- packer manages itself
 
-  use {'VonHeikemen/lsp-zero.nvim', -- Zero (almost) configuration of LSP
-    requires = { 
+  use { 'VonHeikemen/lsp-zero.nvim', -- Zero (almost) configuration of LSP
+    requires = {
       -- LSP Support
-      {'neovim/nvim-lspconfig'},
-      {'williamboman/mason.nvim'},
-      {'williamboman/mason-lspconfig.nvim'},
+      { 'neovim/nvim-lspconfig' },
+      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason-lspconfig.nvim' },
       -- Autocompletion
-      {'hrsh7th/nvim-cmp'},
-      {'hrsh7th/cmp-buffer'},
-      {'hrsh7th/cmp-path'},
-      {'saadparwaiz1/cmp_luasnip'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'hrsh7th/cmp-nvim-lua'},
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-nvim-lua' },
       -- Snippets
-      {'L3MON4D3/LuaSnip'},
-      {'rafamadriz/friendly-snippets'},
+      { 'L3MON4D3/LuaSnip' },
+      { 'rafamadriz/friendly-snippets' },
     }
   }
 
-  use {'ray-x/lsp_signature.nvim', -- function signature display as you type
+  use { 'ray-x/lsp_signature.nvim', -- function signature display as you type
     config = function()
-      require('lsp_signature').setup{doc_lines=0, hint_enable=false}
+      require('lsp_signature').setup { doc_lines = 0, hint_enable = false }
     end
   }
 
   -- commenting
   use 'numToStr/Comment.nvim'
 
-  use {'nvim-treesitter/nvim-treesitter', -- powers many code highlighting/editing/nav plugins
+  use { 'nvim-treesitter/nvim-treesitter', -- powers many code highlighting/editing/nav plugins
     run = function()
       local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
       ts_update()
     end,
   }
   -- configured within treesitter:
-  use {'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter'} -- Context based commenting
-  use {'windwp/nvim-ts-autotag', after = 'nvim-treesitter'} -- like autopairs but for html and more, config in treesitter
-  use { "RRethy/vim-illuminate", after = 'nvim-treesitter'} -- highlight like terms (uses ts/lsp/regex)
+  use { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' } -- Context based commenting
+  use { 'windwp/nvim-ts-autotag', after = 'nvim-treesitter' } -- like autopairs but for html and more, config in treesitter
+  use { "RRethy/vim-illuminate", after = 'nvim-treesitter' } -- highlight like terms (uses ts/lsp/regex)
 
   -- match braces, brackets such
-  use {'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup{} end }
+  use { 'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup {} end }
 
   -- code indentation/block identification
-  use {'lukas-reineke/indent-blankline.nvim', -- indent lines, configured to highlight current block
+  use { 'lukas-reineke/indent-blankline.nvim', -- indent lines, configured to highlight current block
     config = function()
-      require('indent_blankline').setup{
+      require('indent_blankline').setup {
         show_current_context = true,
         show_current_context_start = false,
         show_trailing_blankline_indent = false,
       }
-    end}
+    end }
 
   -- git integration
   use('tpope/vim-fugitive')
-  use {'lewis6991/gitsigns.nvim', requires = 'folke/which-key.nvim'}
+  use { 'lewis6991/gitsigns.nvim', requires = 'folke/which-key.nvim' }
 
   -- icons used by so many plugins
   use 'nvim-tree/nvim-web-devicons'
 
-  use {'feline-nvim/feline.nvim', -- status line
-    config = function ()
-        require('feline').setup()
-        require('feline').winbar.setup() -- puts a small window title up
+  use { 'feline-nvim/feline.nvim', -- status line
+    config = function()
+      require('feline').setup()
+      require('feline').winbar.setup() -- puts a small window title up
     end,
     requires = 'nvim-web-devicons' }
 
   -- dynamic menus based on mappings
-  use {'folke/which-key.nvim', config = function() require('which-key').setup{} end }
+  use { 'folke/which-key.nvim', config = function() require('which-key').setup {} end }
 
   -- restore cursor position in file on re-open
-  use {'ethanholz/nvim-lastplace', config = function() require('nvim-lastplace').setup{} end }
+  use { 'ethanholz/nvim-lastplace', config = function() require('nvim-lastplace').setup {} end }
   -- automatic session save; session restore is human driven (<Leader>q...)
   use({ "folke/persistence.nvim",
     event = "BufReadPre", -- this will only start session saving when an actual file was opened
     module = "persistence",
     config = function()
-    require("persistence").setup()
+      require("persistence").setup()
     end,
   })
 
   -- quick find... anything; m
-  use {'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim', config = function() require('telescope').setup{} end }
+  use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim',
+    config = function() require('telescope').setup {} end }
 
   -- file browsing  (<Leader>e...) prefer using Telescope, are times when a tree view can be useful
   vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-  use {'nvim-neo-tree/neo-tree.nvim', branch = 'v2.x',
-    requires = {'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons', 'MunifTanjim/nui.nvim'},
-    config = function() 
-      require('neo-tree').setup({ 
+  use { 'nvim-neo-tree/neo-tree.nvim', branch = 'v2.x',
+    requires = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons', 'MunifTanjim/nui.nvim' },
+    config = function()
+      require('neo-tree').setup({
         source_selector = { winbar = true, },
         use_libuv_file_watcher = true,
-      }) 
+      })
     end }
 
   -- highlight rgb colour strings like #ffcc33
-  use {'NvChad/nvim-colorizer.lua', config = function() require('colorizer').setup{} end }
+  use { 'NvChad/nvim-colorizer.lua', config = function() require('colorizer').setup {} end }
 
   -- colour schemes: put any needed configuration in user.lua override
   use 'EdenEast/nightfox.nvim'
   use 'folke/tokyonight.nvim'
   use 'lunarvim/darkplus.nvim'
-  use 'navarasu/onedark.nvim' 
+  use 'navarasu/onedark.nvim'
   use 'marko-cerovac/material.nvim'
 
   -- TODO include (optional) user plugins
@@ -189,7 +191,7 @@ if is_bootstrap then -- avoid loading core modules before restart
   print '                                          '
   print '   https://github.com/solutionroute/nvim  '
   print '                                          '
-  return 
+  return
 end
 
 -- finally, we load the core modules, options, mapping and autocommands.
