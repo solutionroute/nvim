@@ -2,8 +2,8 @@
 
 A simple to understand yet capable Neovim configuration for coding or writing.
 
-Fork and extend, or clone and continue to track this repo and use `user.lua` to
-personalize as you wish.
+Fork and extend, or clone and continue to track this repo using the provided 
+personalization mechanism.
 
 For code completion and diagnostics,
 [lsp-zero.nvim](https://github/VonHeikemen/lsp-zero.nvim) brings together (so
@@ -110,7 +110,8 @@ add packages.
 
         $HOME/.npm-global/bin
 
-3. Start a new terminal session to reflect the change before installing anything with `npm -g`.
+3. Start a new terminal session to reflect the change before installing
+   anything with `npm -g`.
 
 ### Treesitter CLI (install only if needed)
 
@@ -122,26 +123,29 @@ requires the treesitter cli:
 ## File Layout
 
 The core of this configuration revolves around `nvim/lua/core/init.lua` where
-packer and plugins are defined; simple configurations are attached to the
-plugin declaration, while anything more complicated goes into `config/*`. 
+packer and plugins are defined. 
 
-User-provided configuration will be picked up if `nvim/user.lua` exists.
+User-provided config.lua and plugins.lua, if needed, should be created within
+lua/user/*. See the example files for guidance.
 
     .
     ├── lua
-    │   └── core
-    │       ├── autocommands.lua
-    │       ├── config
-    │       │   ├── colorscheme.lua
-    │       │   ├── comment.lua
-    │       │   ├── gitsigns.lua
-    │       │   ├── init.lua
-    │       │   ├── treesitter.lua
-    │       │   └── zerolsp.lua
-    │       ├── init.lua
-    │       ├── mapping.lua
-    │       └── options.lua
+    │   ├── core
+    │   │   ├── autocommands.lua
+    │   │   ├── config
+    │   │   │   ├── colorscheme.lua
+    │   │   │   ├── comment.lua
+    │   │   │   ├── gitsigns.lua
+    │   │   │   ├── init.lua
+    │   │   │   ├── treesitter.lua
+    │   │   │   └── zerolsp.lua
+    │   │   ├── init.lua
+    │   │   ├── mapping.lua
+    │   │   └── options.lua
+    │   └── user
+    │       └── README.md
     ├── init.lua
     ├── LICENSE
     ├── README.md
-    └── user-example.lua
+    ├── user-config-example.lua
+    └── user-plugins-example.lua
