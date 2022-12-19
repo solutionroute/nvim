@@ -4,6 +4,9 @@
 -- Material
 vim.g.material_style = "darker"
 require('material').setup({
+  contrast = {
+      cursor_line = true
+  },
   styles = {
       comments = {italic = true,},
   },
@@ -11,6 +14,7 @@ require('material').setup({
     'gitsigns',
     'indent-blankline',
     'nvim-cmp',
+    'nvim-tree',
     'nvim-web-devicons',
     'telescope',
     'which-key',
@@ -29,9 +33,9 @@ require('nightfox').setup({
   },
   palettes = {
     -- #2e3440 is the original
-    nordfox = {bg1="#20242d",},
+    nordfox = {bg1="#20242c",},
   }
 })
 
 -- system default colourscheme; see nvim/user-example for others.
-vim.cmd 'colorscheme material' -- default for this repo
+vim.cmd 'colorscheme nordfox' -- default for this repo
