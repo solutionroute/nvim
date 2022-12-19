@@ -1,18 +1,16 @@
 # nvim
 
-A simple to understand yet capable Neovim configuration for coding or writing.
+A simple to understand, maintainable yet feature full Neovim configuration for
+coding or writing.
 
-Fork and extend, or clone and continue to track this repo using the provided 
-personalization mechanism.
+Fork and extend for yourself, or clone and continue to track this repo, using
+the provided personalization mechanisms as needed.
 
-For code completion and diagnostics,
-[lsp-zero.nvim](https://github/VonHeikemen/lsp-zero.nvim) brings together (so
-you don't have to) all the bits needed to deliver multi-language code
-completion and diagnostics, along with automatic installation and (mostly)
-automatic configuration. One small tweak for Go is included.
-
-This configuration will continue to track stable Neovim (0.8+ currently).
-
+The heavy lifting for programming language support is done by plugin
+[lsp-zero.nvim](https://github/VonHeikemen/lsp-zero.nvim), which brings
+together most of the bits needed to provide multi-language code completion,
+signatures, inspection, diagnostics and auto-formatting. Automatic installation
+and (mostly) automatic configuration are icing on the cake. 
 
                      d8b
                      Y8P
@@ -33,6 +31,8 @@ This configuration will continue to track stable Neovim (0.8+ currently).
      options, and key mappings.
 
 ## Installation
+
+This Neovim configuration will continue to track stable nvim (0.8+ currently).
 
 Backup (or rename) any existing `~/.config/nvim`; then:
 
@@ -71,14 +71,13 @@ For more information, read `user-config-example.lua` and
 
 - Automatic installation/bootstrap as is the norm these days
 - Zero configuration required for most programming languages
+- EditorConfig auto-sets ts/sw and other params
 - Code completion and diagnostics; uninstall that vscode ;-)
-- Auto imports and format for Go and other languages
-- Git indicators and commands via
-  ([gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)) and
-  ([vim-fugitive](https://github.com/tpope/vim-fugitive))
-- Optionally restore a previous editing session
+- Auto imports for Go and auto format for all supported languages/file types
+- Git indicators and commands
+- Optionally restore a previous editing session (files open, windows, state)
 - Telescope of course
-- And, which-key menus aiding your finger muscle-memory
+- And, which-key menus to aid your finger muscle-memory
 
 ## Leader & Menus 
 
@@ -137,6 +136,7 @@ lua/user/*. See the example files for guidance.
     │   │   │   ├── comment.lua
     │   │   │   ├── gitsigns.lua
     │   │   │   ├── init.lua
+    │   │   │   ├── nvimtree.lua
     │   │   │   ├── treesitter.lua
     │   │   │   └── zerolsp.lua
     │   │   ├── init.lua
