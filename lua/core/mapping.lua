@@ -20,16 +20,10 @@ local gs = require("gitsigns")
 
 wk.register({
   d = { "<cmd>bdelete<cr>", "close buffer" },
+  e = { "<cmd>NvimTreeToggle<cr>", "explore file tree" },
   f = { "gwap<cr>", "format paragraph" },
   h = { "<cmd>nohlsearch<cr>", "highlight clear" },
   w = { "<cmd>write<cr>", "write buffer" },
-  e = {
-    name = "explore",
-    b = { "<cmd>Neotree toggle buffers reveal_force_cwd<cr>", "buffers" },
-    c = { "<cmd>Neotree close<cr>", "close" },
-    f = { "<cmd>Neotree toggle reveal_force_cwd<cr>", "files" },
-    g = { "<cmd>Neotree toggle git_status reveal_force_cwd<cr>", "git" },
-  },
   q = {
     name = "quit/sessions",
     q = { "<cmd>quitall<cr>", "quit all buffers" },
