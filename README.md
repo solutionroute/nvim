@@ -61,15 +61,11 @@ Then again run `nvim` to bootstrap packer; quit nvim when done and restart.
 
 ## Customization
 
-If tracking this repo, to override options or mappings without those efforts
-being clobbered by a future update, create `user.lua` and edit to taste:
+You can track this repo while maintaining your own customizations separate from
+the repo code. 
 
-    cd $HOME/.config/nvim
-    cp -n user-example.lua user.lua
-
-Place all your personalizations within `user.lua` and restart nvim.
-
-Coming soon: user-supplied plugin management.
+For more information, read `user-config-example.lua` and
+`user-plugins-example.lua`and copy as needed to the user.config directory.
 
 ## Key Features 
 
@@ -77,7 +73,9 @@ Coming soon: user-supplied plugin management.
 - Zero configuration required for most programming languages
 - Code completion and diagnostics; uninstall that vscode ;-)
 - Auto imports and format for Go and other languages
-- Git indicators (gitsigns) and commands (Fugitive)
+- Git indicators and commands via
+  ([gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)) and
+  ([vim-fugitive](https://github.com/tpope/vim-fugitive))
 - Optionally restore a previous editing session
 - Telescope of course
 - And, which-key menus aiding your finger muscle-memory
@@ -94,12 +92,13 @@ Coming soon: user-supplied plugin management.
 
 ## Optional Software
 
-### Nodejs (install only if needed)
-
 Some language servers and treesitter parsers rely on `nodejs`, so you *may*
-need to install Node and a package manager on your machine. To install /
-configure `nodejs` and you'll probably want to do so in a way that doesn't
-require root access to add packages.
+need to install Node and a package manager on your machine. 
+
+### Nodejs
+
+You may wish to configure `nodejs` in a way that doesn't require root access to
+add packages.
 
 1. Include a variable in your `.bashrc` or relevant shell config file:
 

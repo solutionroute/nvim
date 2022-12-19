@@ -154,7 +154,12 @@ require('packer').startup(function(use)
   use 'navarasu/onedark.nvim'
   use 'marko-cerovac/material.nvim'
 
-  -- TODO include (optional) user plugins
+  -- Simple but workable user customization
+  -- copy the user-plugins-example.lua file to nvim/lua/user/plugins.lua
+  local ok, user_plugins = pcall(require, 'user.plugins')
+  if ok then
+    user_plugins(use)
+  end
 
   if is_bootstrap then
     require("packer").sync()
@@ -200,3 +205,5 @@ require('core.config') -- configuration for plugins
 require('core.options') -- nvim options
 require('core.mapping') -- key maps and menus, mostly driven by which-key
 require('core.autocommands') -- autocommands with no better place to go
+-- last, protected calls to require user.config which may not be present
+pcall(require, 'user.config')

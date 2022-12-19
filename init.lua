@@ -29,14 +29,14 @@ if vim.version().minor >= min_minor or vim.version().prerelease then
   require('core')
 
   -- only load user customizaions when not bootstrapping
-  if package.loaded['core.options'] then
-    local user_config = vim.fn.stdpath('config') .. '/user.lua'
-    local f = io.open(user_config)
-    if f then
-      f:close()
-      vim.cmd('luafile '..user_config)
-    end
-  end
+  -- if package.loaded['core.options'] then
+  --   local user_config = vim.fn.stdpath('config') .. '/user.lua'
+  --   local f = io.open(user_config)
+  --   if f then
+  --     f:close()
+  --     vim.cmd('luafile '..user_config)
+  --   end
+  -- end
 else
   vim.schedule(function() vim.notify("Unsupported Neovim Version! Must be 0."..min_minor.."+ or nightly release.", "error") end)
 end
