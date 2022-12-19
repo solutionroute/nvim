@@ -122,13 +122,11 @@ require('packer').startup(function(use)
     -- file browsing  (<Leader>e...) for the times when a tree view is useful
     use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons', }, tag = 'nightly', }
 
-    -- status line (and winboar short titles)
-    use { 'feline-nvim/feline.nvim',
-        config = function()
-            require('feline').setup()
-            require('feline').winbar.setup()
-        end,
-        requires = 'nvim-web-devicons' }
+    -- lightweight title bar for path-y goodness
+    use { 'fgheng/winbar.nvim', config = function() require('winbar').setup { enabled = true } end }
+
+    -- status line
+    use { 'feline-nvim/feline.nvim', requires = 'nvim-web-devicons', config = function() require('feline').setup() end, }
 
     use { 'folke/which-key.nvim', config = function() require('which-key').setup {} end } -- dynamic menus derived from key mappings
 
