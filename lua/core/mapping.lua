@@ -17,6 +17,7 @@ map("i", "<C-s>", "<esc><cmd>write<CR>", { desc = "write buffer" }) -- same as <
 local wk = require("which-key")
 local tb = require("telescope.builtin")
 local gs = require("gitsigns")
+
 wk.register({
   d = { "<cmd>bdelete<cr>", "close buffer" },
   f = { "gwap<cr>", "format paragraph" },
@@ -40,10 +41,11 @@ wk.register({
   s = {
     name = "search",
     b = { tb.buffers, "search buffers" },
-    c = { tb.colorscheme, "explore colorscheme" },
+    c = { tb.colorscheme, "search colorschemes" },
     f = { tb.find_files, "search files" },
-    g = { tb.live_grep, "grep files" },
+    g = { tb.live_grep, "search with grep" },
     h = { tb.help_tags, "search help" },
+    k = { tb.keymaps, "search keymaps" },
     m = { tb.marks, "search marks" },
     p = { tb.builtin, "search telescope pickers" },
     q = { tb.quickfix, "search quickfix" },
@@ -51,33 +53,33 @@ wk.register({
   },
   l = {
     name = "language server",
-    d = { tb.lsp_definitions, "Go to Definition" }, -- also Ctrl-W]
-    b = { tb.lsp_document_symbols, "List symbols in buffer" },
-    l = { "<cmd>LspInfo<cr>", "Lsp info" },
-    m = { "<cmd>Mason<cr>", "Mason" },
+    b = { tb.lsp_document_symbols, "lsp buffer symbols" },
+    d = { tb.lsp_definitions, "lsp jump to definition" }, -- also Ctrl-W]
+    i = { "<cmd>LspInfo<cr>", "lsp info" },
+    m = { "<cmd>Mason<cr>", "mason" },
   },
   p = {
     name = "packer",
     c = { "<cmd>PackerCompile<cr>", "packer compile" },
     i = { "<cmd>PackerInstall<cr>", "packer install" },
     s = { "<cmd>PackerSync<cr>", "packer sync" },
-    S = { "<cmd>PackerStatus<cr>", "packer status" },
+    S = { "<cmd>PackerStatus<cr>", "packer Status" },
     u = { "<cmd>PackerUpdate<cr>", "packer update" },
   },
   g = {
     name = "git",
-    S = { "<cmd>Telescope git_status<cr>", "Git Status" },
-    f = { tb.git_files, "search git repo" },
-    j = { gs.next_hunk, "Next git hunk" },
-    k = { gs.prev_hunk, "Previous git hunk" },
-    l = { gs.blame_line, "View git blame" },
-    p = { gs.preview_hunk, "Preview git hunk" },
-    h = { gs.stage_hunk, "Stage git hunk" },
-    H = { gs.reset_hunk, "Reset git hunk" },
-    r = { gs.reset_buffer, "Reset git buffer" },
-    s = { gs.stage_buffer, "Stage git buffer" },
-    t = { gs.toggle_deleted, "Toggle deleted" },
-    u = { gs.undo_stage_hunk, "Unstage git hunk" },
-    d = { gs.diffthis, "View git diff" },
+    d = { gs.diffthis, "git diff" },
+    f = { tb.git_files, "search git files" },
+    S = { tb.git_status, "show git status" },
+    j = { gs.next_hunk, "next git hunk" },
+    k = { gs.prev_hunk, "previous git hunk" },
+    l = { gs.blame_line, "list git blame" },
+    p = { gs.preview_hunk, "review git hunk" },
+    h = { gs.stage_hunk, "stage git hunk" },
+    H = { gs.reset_hunk, "reset git hunk" },
+    r = { gs.reset_buffer, "reset git buffer" },
+    s = { gs.stage_buffer, "stage git buffer" },
+    t = { gs.toggle_deleted, "toggle deleted" },
+    u = { gs.undo_stage_hunk, "unstage git hunk" },
   }
 }, { prefix = "<leader>" })
