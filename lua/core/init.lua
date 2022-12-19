@@ -125,8 +125,9 @@ require('packer').startup(function(use)
     -- lightweight title bar for path-y goodness
     use { 'fgheng/winbar.nvim', config = function() require('winbar').setup { enabled = true } end }
 
-    -- status line
-    use { 'feline-nvim/feline.nvim', requires = 'nvim-web-devicons', config = function() require('feline').setup() end, }
+    -- status line; lualine adapts to theme changes well
+    use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+        config = function() require("lualine").setup() end }
 
     use { 'folke/which-key.nvim', config = function() require('which-key').setup {} end } -- dynamic menus derived from key mappings
 
