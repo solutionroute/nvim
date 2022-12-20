@@ -3,14 +3,12 @@
 A simple to understand, maintainable yet feature full Neovim configuration for
 coding or writing.
 
-Fork and extend for yourself, or clone and continue to track this repo, using
-the provided personalization mechanisms as needed.
+Wanting to rewrite the personal configuration I had been using to better take advantage of LSP features, I decided to try to make this useful for others using simple personalization mechanisms - check the README files. Or, fork and extend for yourself.
 
-The heavy lifting for programming language support is done by plugin
-[lsp-zero.nvim](https://github/VonHeikemen/lsp-zero.nvim), which brings
-together most of the bits needed to provide multi-language code completion,
-signatures, inspection, diagnostics and auto-formatting. Automatic installation
-and (mostly) automatic configuration are icing on the cake. 
+The heavy lifting for language support is done by plugin
+[lsp-zero.nvim](https://github/VonHeikemen/lsp-zero.nvim) replaced a ton of LSP configuration code I used to maintain.
+
+You'll get multi-language code completion, signatures, inspection, diagnostics and auto-formatting. Automatic installation of nvim, plugins, LSP features and (mostly) automatic configuration are icing on the cake. 
 
                      d8b
                      Y8P
@@ -88,6 +86,19 @@ For more information, read `user-config-example.lua` and
   (yank), **g** (go/movement), **v** (visual), **z** (folds, spelling). In
   normal mode, press these keys (once) to see more. Multi-key mappings like
   `<C-w>` will also display a menu after timeout.
+
+## Screenshots
+
+Showing the default Nordfox theme (modified with a slightly darker bg color), from the [EdenEast/nightfox.nvim theme](https://github.com/EdenEast/nightfox.nvim) pack:
+
+Signature while typing, go to defintion, tree explorer
+![fn sigs and more](https://raw.githubusercontent.com/solutionroute/nvim/main/doc/fnsig-tree-fndef.png)
+
+Code Completion
+![code-completion](https://raw.githubusercontent.com/solutionroute/nvim/main/doc/code-completion.png)
+
+Which-key menus (c cut/change key)
+![which-key menus](https://raw.githubusercontent.com/solutionroute/nvim/main/doc/whichkey-c-menu.png)
 
 ## Optional Software
 
