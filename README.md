@@ -1,14 +1,21 @@
 # nvim
 
-A simple to understand, maintainable yet feature full Neovim configuration for
-coding or writing.
+What is this? A simple to understand, maintainable yet decently feature-rich
+Neovim configuration for coding or writing.
 
-Wanting to rewrite the personal configuration I had been using to better take advantage of LSP features, I decided to try to make this useful for others using simple personalization mechanisms - check the README files. Or, fork and extend for yourself.
+When undertaking rewriting my personal nvim configuration to a) better take
+advantage of LSP features so I could b) avoid using VSCode (which never fully
+fit my fingers like vim/nvim have for 2+ decades), I made this config such that
+it is easily customizable for others - check the README files. Or, fork and
+extend for yourself.
 
 The heavy lifting for language support is done by plugin
-[lsp-zero.nvim](https://github/VonHeikemen/lsp-zero.nvim) replaced a ton of LSP configuration code I used to maintain.
+[lsp-zero.nvim](https://github/VonHeikemen/lsp-zero.nvim) replaced a ton of LSP
+configuration code I used to maintain.
 
-You'll get multi-language code completion, signatures, inspection, diagnostics and auto-formatting. Automatic installation of nvim, plugins, LSP features and (mostly) automatic configuration are icing on the cake. 
+You'll get multi-language code completion, signatures, inspection, diagnostics
+and auto-formatting. Automatic installation of nvim, plugins, LSP features and
+(mostly) automatic configuration are icing on the cake. 
 
                      d8b
                      Y8P
@@ -30,7 +37,7 @@ You'll get multi-language code completion, signatures, inspection, diagnostics a
 
 ## Installation
 
-This Neovim configuration will continue to track stable nvim (0.8+ currently).
+*This Neovim configuration will continue to track stable nvim (0.8+ currently).*
 
 Backup (or rename) any existing `~/.config/nvim`; then:
 
@@ -75,6 +82,7 @@ For more information, read `user-config-example.lua` and
 - Git indicators and commands
 - Optionally restore a previous editing session (files open, windows, state)
 - Telescope of course
+- A selection of color schemes; it's easy to add your own
 - And, which-key menus to aid your finger muscle-memory
 
 ## Leader & Menus 
@@ -89,9 +97,10 @@ For more information, read `user-config-example.lua` and
 
 ## Screenshots
 
-Showing the default Nordfox theme (modified with a slightly darker bg color), from the [EdenEast/nightfox.nvim theme](https://github.com/EdenEast/nightfox.nvim) pack:
+Showing the default Nordfox theme (modified with a slightly darker bg color),
+from the [EdenEast/nightfox.nvim theme](https://github.com/EdenEast/nightfox.nvim) pack:
 
-Signature while typing, go to defintion, tree explorer
+Signature while typing, go to definition, tree explorer
 ![fn sigs and more](https://raw.githubusercontent.com/solutionroute/nvim/main/doc/fnsig-tree-fndef.png)
 
 Code Completion
@@ -108,7 +117,8 @@ need to install Node and a package manager on your machine.
 ### Nodejs
 
 You may wish to configure `nodejs` in a way that doesn't require root access to
-add packages.
+add packages. It's likely you'll find that useful for many, or all, of your
+Node projects.
 
 1. Include a variable in your `.bashrc` or relevant shell config file:
 
@@ -135,13 +145,16 @@ requires the treesitter cli:
 The core of this configuration revolves around `nvim/lua/core/init.lua` where
 packer and plugins are defined. 
 
-User-provided config.lua and plugins.lua, if needed, should be created within
-lua/user/*. See the example files for guidance.
+User-provided `config.lua` and `plugins.lua`, if needed, should be created
+within lua/user/*. See `user/README.md` and the example files for guidance.
 
     .
+    ├── doc
+    │   ├── code-completion.png
+    │   ├── fnsig-tree-fndef.png
+    │   └── whichkey-c-menu.png
     ├── lua
     │   ├── core
-    │   │   ├── autocommands.lua
     │   │   ├── config
     │   │   │   ├── colorscheme.lua
     │   │   │   ├── comment.lua
@@ -150,13 +163,16 @@ lua/user/*. See the example files for guidance.
     │   │   │   ├── nvimtree.lua
     │   │   │   ├── treesitter.lua
     │   │   │   └── zerolsp.lua
+    │   │   ├── autocommands.lua
     │   │   ├── init.lua
     │   │   ├── mapping.lua
     │   │   └── options.lua
     │   └── user
     │       └── README.md
+    ├── foo
     ├── init.lua
     ├── LICENSE
     ├── README.md
     ├── user-config-example.lua
     └── user-plugins-example.lua
+
