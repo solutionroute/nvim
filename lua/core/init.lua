@@ -82,6 +82,7 @@ require('packer').startup(function(use)
     use { 'ray-x/lsp_signature.nvim', -- function signature display as you type
         config = function()
             require('lsp_signature').setup { doc_lines = 0, hint_enable = false }
+            require "lsp_signature".on_attach()
         end
     }
 
