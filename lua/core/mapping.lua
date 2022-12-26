@@ -71,7 +71,7 @@ wk.register({
         k = { gs.prev_hunk, "previous git hunk" },
         l = { gs.blame_line, "list git blame" },
         p = { gs.preview_hunk, "review git hunk" },
-        P = { "<cmd>G push", "git push" },
+        P = { "<cmd>G push<cr>", "git push" },
         r = { gs.reset_buffer, "reset git buffer" },
         s = { gs.stage_buffer, "stage git buffer" },
         S = { tb.git_status, "show git status" },
