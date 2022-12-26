@@ -14,6 +14,7 @@ require('material').setup({
         'gitsigns',
         'indent-blankline',
         'nvim-cmp',
+        'nvim-notify',
         'nvim-tree',
         'nvim-web-devicons',
         'telescope',
@@ -24,6 +25,7 @@ require('material').setup({
 -- Nightfox
 require('nightfox').setup({
     options = {
+        dim_inactive = true,
         transparent = true,
         styles = {
             comments = "italic",
