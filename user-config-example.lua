@@ -6,16 +6,16 @@
 --      cp $HOME/.config/nvim/user-config-example.lua \
 --      $HOME/.config/nvim/lua/user/config.lua
 --
--- You'll need to restart nvim after changes.
+-- Restart nvim after copying the file or any changes.
 --
 -- Example:
-vim.opt.relativenumber = true   -- Show relative numberline (default is false)
-vim.opt.undofile = false        -- Enable persistent undo (default is true)
+vim.opt.relativenumber = true -- Show relative numberline (default is false)
+vim.opt.undofile = false -- Enable persistent undo (default is true)
 
 -- <Leader> is mapped to <Space> by default
 -- Modes: n - normal; i - insert; v - visual; x - block mode; c - command
 
-vim.keymap.set("i", "<C-s>", "<cmd>write<CR>", {desc = "write buffer"}) -- same as <Leader>w
+vim.keymap.set("i", "<C-s>", "<cmd>write<CR>", { desc = "write buffer" }) -- same as <Leader>w
 
 -- Colorschemes
 -- ------------
@@ -29,10 +29,9 @@ vim.keymap.set("i", "<C-s>", "<cmd>write<CR>", {desc = "write buffer"}) -- same 
 -- vim.cmd 'colorscheme material
 
 -- others simply need to be specified, i.e.:
--- vim.cmd 'colorscheme nightfox' 
--- vim.cmd 'colorscheme nordfox'
--- vim.cmd 'colorscheme terafox' 
--- vim.cmd 'colorscheme onedark'
 -- vim.cmd 'colorscheme tokyonight-night'
-vim.cmd 'colorscheme darkplus'
-
+-- vim.cmd 'colorscheme darkplus'
+-- vim.cmd 'colorscheme onedark'
+-- vim.cmd 'colorscheme nightfox'
+-- vim.cmd 'colorscheme terafox'
+-- vim.cmd 'colorscheme nordfox' -- this is the package's default
