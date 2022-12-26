@@ -86,6 +86,34 @@ require('packer').startup(function(use)
         end
     }
 
+    -- go lang tools, may tromp on some things - unclear
+    use { 'ray-x/go.nvim',
+        requires = { 'ray-x/guihua.lua' },
+        config = function()
+            require('go').setup({
+                tag_options = '',
+            })
+        end
+    }
+
+    -- a less expansive go lang option, some issues observed
+    -- use { 'crispgm/nvim-go',
+    --     requires = {
+    --         'nvim-lua/plenary.nvim',
+    --         'rcarriga/nvim-notify',
+    --         'neovim/nvim-lspconfig',
+    --     },
+    --     config = function()
+    --         require('go').setup({
+    --             notify = true,
+    --             auto_format = false,
+    --             auto_lint = false,
+    --             lint_prompt_style = 'vt',
+    --             tag_options = {},
+    --         })
+    --     end
+    -- }
+
     use 'numToStr/Comment.nvim' -- commenting
     use 'gpanders/editorconfig.nvim' -- sets ts/sw and other params by language
 
@@ -117,6 +145,8 @@ require('packer').startup(function(use)
 
     use 'nvim-tree/nvim-web-devicons' -- icons used by many plugins
 
+    -- gui-like notifications
+    use 'rcarriga/nvim-notify'
     -- quick find... anything!
     use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim',
         config = function() require('telescope').setup {} end }
