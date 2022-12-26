@@ -1,5 +1,8 @@
+-- nvim/lua/core/options.lua
 -- default options
--- options and mappings can be overridden in nvim/user.lua - see nvim/user-example.lua
+
+-- Note: options, mappings and autocommands can be overridden in
+-- nvim/lua/user/config.lua - see nvim/user-config-example.lua
 
 local opt = vim.opt
 
@@ -10,7 +13,7 @@ opt.cmdheight = 1 -- (0 will hide command line unless needed)
 opt.completeopt = { "menuone", "noselect" } -- Options for insert mode completion
 opt.copyindent = true -- Copy the previous indentation on autoindenting
 opt.cursorline = true -- Highlight the text line of the cursor
-opt.expandtab = true -- Enable the use of space in tab
+opt.expandtab = false -- do not replace tabs with spaces
 opt.fileencoding = "utf-8" -- File content encoding for the buffer
 opt.fillchars = { eob = " " } -- Disable `~` on nonexistent lines
 opt.history = 100 -- Number of commands to remember in a history table
@@ -28,15 +31,14 @@ opt.showmode = false -- Disable showing modes in command line
 opt.showtabline = 0 -- don't use vim tabline
 opt.sidescrolloff = 8 -- Number of columns to keep at the sides of the cursor
 opt.signcolumn = "yes" -- Always show the sign column
-opt.smartcase = true -- Case sensitivie searching
+opt.smartcase = true -- Case sensitive searching
 opt.splitbelow = true -- Splitting a new window below the current one
 opt.splitright = true -- Splitting a new window at the right of the current one
 opt.swapfile = false -- Disable use of swapfile for the buffer
-opt.tabstop = 4 -- Number of space in a tab
-opt.termguicolors = true -- Enable 24-bit RGB color in the TUI
-opt.timeoutlen = 300 -- Length of time to wait for a mapped sequence
+opt.tabstop = 4 -- tabs on screen; doesn't change occurences of tab in file
+opt.termguicolors = true -- Enable 24-bit RGB color
+opt.timeoutlen = 250 -- Length of time to wait for a mapped sequence to complete
 opt.undofile = true -- Enable persistent undo
-opt.updatetime = 300 -- Length of time to wait before triggering the plugin
+opt.updatetime = 2000 -- Length of time to wait before writing swapfile (if being written)
 opt.wrap = false -- Disable wrapping of lines longer than the width of window
 opt.writebackup = false -- Disable making a backup before overwriting a file
-
