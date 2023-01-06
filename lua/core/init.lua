@@ -79,56 +79,12 @@ require('packer').startup(function(use)
 		}
 	}
 
-	use { 'ray-x/lsp_signature.nvim', -- function signature display as you type
-		config = function()
-			require('lsp_signature').setup { doc_lines = 0, hint_enable = false }
-			require "lsp_signature".on_attach()
-		end
-	}
-	use { 'folke/trouble.nvim',
-		requires = 'kyazdani42/nvim-web-devicons',
-		config = function()
-			require('trouble').setup {}
-		end
-	}
-	-- go lang tools, may tromp on some things - unclear
-	use { 'ray-x/go.nvim',
-		requires = { 'ray-x/guihua.lua' },
-		config = function()
-			require('go').setup({
-				tag_options = '',
-			})
-		end
-	}
-
-	-- a less expansive go lang option, some issues observed
-	-- use { 'crispgm/nvim-go',
-	--     requires = {
-	--         'nvim-lua/plenary.nvim',
-	--         'rcarriga/nvim-notify',
-	--         'neovim/nvim-lspconfig',
-	--     },
-	--     config = function()
-	--         require('go').setup({
-	--             notify = true,
-	--             auto_format = false,
-	--             auto_lint = false,
-	--             lint_prompt_style = 'vt',
-	--             tag_options = {},
-	--         })
-	--     end
-	-- }
-
-	use 'numToStr/Comment.nvim' -- commenting
-	use 'gpanders/editorconfig.nvim' -- sets ts/sw and other params by language
-
-	use { 'nvim-treesitter/nvim-treesitter', -- powers many code highlighting/editing/nav plugins
+	use { 'nvim-treesitter/nvim-treesitter',
 		run = function()
 			local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
 			ts_update()
 		end,
 	}
-
 	-- These three are configured within config.treesitter:
 	use { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' } -- Context based commenting
 	use { 'windwp/nvim-ts-autotag', after = 'nvim-treesitter' } -- like autopairs but for html and more, config in treesitter
@@ -146,12 +102,46 @@ require('packer').startup(function(use)
 		end,
 	}
 
-	use('tpope/vim-fugitive') -- git integration via cmd "G" cmd
-	use { 'lewis6991/gitsigns.nvim', requires = 'folke/which-key.nvim' } -- git dignostics and keymaps
-
 	use 'nvim-tree/nvim-web-devicons' -- icons used by many plugins
 
-	-- gui-like notifications
+	use { 'ray-x/lsp_signature.nvim', -- function signature display as you type
+		config = function()
+			require('lsp_signature').setup { doc_lines = 0, hint_enable = false }
+			require "lsp_signature".on_attach()
+		end
+	}
+	-- diagnostics in quickfix
+	use { 'folke/trouble.nvim',
+		requires = 'kyazdani42/nvim-web-devicons',
+		config = function()
+			require('trouble').setup {}
+		end
+	}
+
+	-- go lang tools, may tromp on some things - unclear
+	use { 'ray-x/go.nvim',
+		requires = { 'ray-x/guihua.lua' },
+		config = function()
+			require('go').setup({
+				tag_options = '',
+			})
+		end
+	}
+
+	use 'numToStr/Comment.nvim' -- commenting
+	use 'gpanders/editorconfig.nvim' -- sets ts/sw and other params by language
+
+	-- git dignostics in gutter
+	use { 'lewis6991/gitsigns.nvim',
+		requires = 'folke/which-key.nvim',
+		config = function()
+			require('gitsigns').setup()
+		end
+	}
+	-- <leader>gl
+	use { 'kdheepak/lazygit.nvim' }
+
+	-- pretty+move notifications up from status line
 	use { 'rcarriga/nvim-notify',
 		config = function()
 			require("notify").setup {
@@ -159,11 +149,14 @@ require('packer').startup(function(use)
 			}
 		end,
 	}
-	-- quick find... anything!
-	use { 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim',
-		config = function() require('telescope').setup {} end }
-	-- file browsing  (<Leader>e...) for the times when a tree view is useful
-	use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons', }, tag = 'nightly', }
+
+	-- quick find... anything! Mostly <leader>s...
+	use { 'nvim-telescope/telescope.nvim',
+		requires = 'nvim-lua/plenary.nvim',
+		config = function()
+			require('telescope').setup {}
+		end
+	}
 
 	-- lightweight title bar for path-y goodness
 	use { 'fgheng/winbar.nvim', config = function() require('winbar').setup { enabled = true } end }
@@ -183,12 +176,12 @@ require('packer').startup(function(use)
 			require("persistence").setup()
 		end,
 	})
+
 	-- highlight rgb colour strings like #ffcc33
 	use { 'NvChad/nvim-colorizer.lua', config = function() require('colorizer').setup {} end }
 
 	-- colour schemes: put any needed configuration in user.lua override
 	use 'EdenEast/nightfox.nvim'
-	use 'folke/tokyonight.nvim'
 	use 'lunarvim/darkplus.nvim'
 	use 'navarasu/onedark.nvim'
 	use 'marko-cerovac/material.nvim'

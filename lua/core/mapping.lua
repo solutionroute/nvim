@@ -18,7 +18,6 @@ map("n", "<Backspace>", ":", { desc = "command line" })
 -- or the which-key way (these all for <Leader>)
 local wk = require("which-key")
 local tb = require("telescope.builtin")
-local gs = require("gitsigns")
 
 wk.register({
 	-- one key
@@ -29,21 +28,9 @@ wk.register({
 	-- two keys
 	g = {
 		name = "git",
-		C = { "<cmd>G commit<cr>", "git commit" },
-		d = { gs.diffthis, "git diff" },
+		l = { "<cmd>LazyGit<cr>", "lazygit" },
 		f = { tb.git_files, "search git files" },
-		h = { gs.stage_hunk, "stage git hunk" },
-		H = { gs.reset_hunk, "reset git hunk" },
-		j = { gs.next_hunk, "next git hunk" },
-		k = { gs.prev_hunk, "previous git hunk" },
-		l = { gs.blame_line, "list git blame" },
-		p = { gs.preview_hunk, "review git hunk" },
-		P = { "<cmd>G push<cr>", "git push" },
-		r = { gs.reset_buffer, "reset git buffer" },
-		s = { gs.stage_buffer, "stage git buffer" },
 		S = { tb.git_status, "show git status" },
-		t = { gs.toggle_deleted, "toggle deleted" },
-		u = { gs.undo_stage_hunk, "unstage git hunk" },
 	},
 	l = {
 		name = "language server",
@@ -75,7 +62,6 @@ wk.register({
 		name = "search",
 		b = { tb.buffers, "search buffers" },
 		c = { tb.colorscheme, "search colorschemes" },
-		e = { "<cmd>NvimTreeToggle<cr>", "explore file tree" },
 		g = { tb.live_grep, "search with grep" },
 		h = { tb.help_tags, "search help" },
 		k = { tb.keymaps, "search keymaps" },
