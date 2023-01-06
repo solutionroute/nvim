@@ -12,6 +12,8 @@ map("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Buffer Next" })
 map("n", "<S-Tab>", "<cmd>bprevious<CR>", { desc = "Buffer Previous" })
 map("n", "<C-s>", "<cmd>write<CR>", { desc = "write buffer" }) -- same as <Leader>w
 map("i", "<C-s>", "<esc><cmd>write<CR>", { desc = "write buffer" }) -- same as <Leader>w
+map("n", ";r", "gwap", { desc = "reflow paragraph" })
+map("n", "<Backspace>", ":", { desc = "command line" })
 
 -- or the which-key way (these all for <Leader>)
 local wk = require("which-key")
@@ -21,8 +23,7 @@ local gs = require("gitsigns")
 wk.register({
 	-- one key
 	d = { "<cmd>bdelete<cr>", "close buffer" },
-	e = { "<cmd>NvimTreeToggle<cr>", "explore file tree" },
-	f = { "gwap<cr>", "format paragraph" },
+	f = { tb.find_files, "file picker" },
 	h = { "<cmd>nohlsearch<cr>", "highlight clear" },
 	w = { "<cmd>write<cr>", "write buffer" },
 	-- two keys
@@ -47,7 +48,10 @@ wk.register({
 	l = {
 		name = "language server",
 		b = { tb.lsp_document_symbols, "lsp buffer symbols" },
-		d = { tb.lsp_definitions, "lsp jump to definition" }, -- also Ctrl-W]
+		d = { tb.lsp_definitions, "jump to lsp definition" }, -- also Ctrl-W]
+		D = { "<cmd>TroubleToggle<cr>", "diagnostic window" },
+		n = { vim.diagnostic.goto_next, "jump to next diagnostic" },
+		p = { vim.diagnostic.goto_prev, "jump to previous diagnostic" },
 		i = { "<cmd>LspInfo<cr>", "lsp info" },
 		m = { "<cmd>Mason<cr>", "mason" },
 	},
@@ -71,7 +75,7 @@ wk.register({
 		name = "search",
 		b = { tb.buffers, "search buffers" },
 		c = { tb.colorscheme, "search colorschemes" },
-		f = { tb.find_files, "search files" },
+		e = { "<cmd>NvimTreeToggle<cr>", "explore file tree" },
 		g = { tb.live_grep, "search with grep" },
 		h = { tb.help_tags, "search help" },
 		k = { tb.keymaps, "search keymaps" },
@@ -79,10 +83,10 @@ wk.register({
 		p = { tb.builtin, "search telescope pickers" },
 		q = { tb.quickfix, "search quickfix" },
 		r = { tb.oldfiles, "search recent" },
+
 	},
 	t = {
 		name = "toggle",
-		e = { "<cmd>NvimTreeToggle<cr>", "explore file tree" },
 		s = { "<cmd>set invspell<cr>", "spell check" },
 	},
 }, { prefix = "<leader>" })
