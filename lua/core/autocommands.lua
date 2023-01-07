@@ -51,7 +51,8 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = "*.ego",
 	command = "set filetype=html"
 })
-vim.api.nvim_create_autocmd({ "BufWrite" }, {
+-- prevent autoformat as it'll mess up the go code
+vim.api.nvim_create_autocmd({ "BufWriteCmd" }, {
 	pattern = "*.ego",
 	command = "noa write"
 
