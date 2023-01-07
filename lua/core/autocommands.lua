@@ -45,3 +45,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function() vim.lsp.buf.format() end,
 	group = vim.api.nvim_create_augroup("lsp_document_format", { clear = true })
 })
+
+-- embedded html in go (and other - ERB style - templates)
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = "*.ego",
+	command = "set filetype=html"
+})
+vim.api.nvim_create_autocmd({ "BufWrite" }, {
+	pattern = "*.ego",
+	command = "noa write"
+
+})
