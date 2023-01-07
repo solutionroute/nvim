@@ -52,7 +52,7 @@ packer.init {
 -- popup windows, not even for bootstrapping
 if vim.g.colors_name == nil then
 	vim.o.termguicolors = true
-	vim.cmd [[colorscheme slate]]
+	vim.cmd [[colorscheme slate]] -- a built-in theme
 end
 
 require('core.options') -- nvim options
@@ -182,7 +182,6 @@ require('packer').startup(function(use)
 
 	-- colour schemes: put any needed configuration in user.lua override
 	use 'EdenEast/nightfox.nvim'
-	use 'lunarvim/darkplus.nvim'
 	use 'navarasu/onedark.nvim'
 	use 'marko-cerovac/material.nvim'
 
